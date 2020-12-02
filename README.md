@@ -1,6 +1,6 @@
 # OpenPokerAI 
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OpenPokerAI_OpenPokerAI&metric=alert_status)](https://sonarcloud.io/dashboard?id=OpenPokerAI_OpenPokerAI)[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=OpenPokerAI_OpenPokerAI&metric=ncloc)](https://sonarcloud.io/dashboard?id=OpenPokerAI_OpenPokerAI)
+[![Build Status](https://dev.azure.com/OpenPokerAI/OpenPokerAI/_apis/build/status/MarcFletcher.OpenPokerAI?branchName=main)](https://dev.azure.com/OpenPokerAI/OpenPokerAI/_build/latest?definitionId=1&branchName=main) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=OpenPokerAI_OpenPokerAI&metric=ncloc)](https://sonarcloud.io/dashboard?id=OpenPokerAI_OpenPokerAI)
 
 ## What is it?
 
@@ -14,7 +14,7 @@ This project is released under the terms of the Apache 2.0 License.
 
 This was one of many side projects by [MattDean](https://github.com/MattDean) and [MarcFletcher](https://github.com/MarcFletcher) between 2009 and 2013. Since then we got distracted with life and the code has sat on a shelf ever since.
 
-Back then the field of ML was orders of magnitude less sophisticated than it is today so some of the ML implementations demonstrated here might now be considered out-of-date. Since 2013 we've also learnt a lot about how to create large software projects so please don't judge what still looks like a 'hacky' project. We feel it is better to share it sooner in its current form, warts and all, rather than later or never.
+Back then the field of ML was orders of magnitude less sophisticated than it is today so some of the ML implementations demonstrated here might now be considered out-of-date. Since 2013 we've also learnt a lot about how to create large software projects so please don't judge what still looks like a 'hacky' project, e.g. we don't have many tests which should really exist. We feel it is better to share it sooner in its current form, warts and all, rather than later or never.
 
 ## Getting started
 
