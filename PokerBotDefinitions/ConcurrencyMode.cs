@@ -1,13 +1,13 @@
 ﻿namespace PokerBot.Definitions
 {
-    public static class ConcurrencyMode
+  public static class ConcurrencyMode
+  {
+    public enum ConcurencyModel
     {
-        public enum ConcurencyModel
-        {
-            MultiCore,
-            Single,
-        }
-
-        public static ConcurencyModel Concurrency = ConcurencyModel.Single;
+      MultiCore,
+      Single,
     }
+
+    public static ConcurencyModel Concurrency = ConcurencyModel.Single;
+  }
 }

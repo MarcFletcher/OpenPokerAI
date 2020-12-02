@@ -6,7 +6,7 @@
     },
     "indentation": {
       "useTabs": false,
-      "indentationSize": 2 //Doesn't currently work
+      "indentationSize": 2
     }
   }
 }

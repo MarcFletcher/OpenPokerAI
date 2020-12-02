@@ -1,6 +1,6 @@
 # OpenPokerAI 
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OpenPokerAI_OpenPokerAI&metric=alert_status)](https://sonarcloud.io/dashboard?id=OpenPokerAI_OpenPokerAI)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OpenPokerAI_OpenPokerAI&metric=alert_status)](https://sonarcloud.io/dashboard?id=OpenPokerAI_OpenPokerAI)[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=OpenPokerAI_OpenPokerAI&metric=ncloc)](https://sonarcloud.io/dashboard?id=OpenPokerAI_OpenPokerAI)
 
 ## What is it?
 
