@@ -1,0 +1,15 @@
+﻿Changes Made to Encog By MF (Usefull for future version upgrades)
+
+NeuralGeneticAlgorithm.cs - Added Blank constructor
+Added NNMain.cs
+Added NNThreadSafeNetworkPool.cs
+Added NNLoadSave.cs
+FilePersistence.cs - Bug fix in CreateStream(FileMode mode)
+Moved to .Net 4.0
+Distort.cs - Added support for selective neuron distortion.
+MutatePerturb.cs - Added support for selective neuron distortion and multiple mutation factors.
+GeneticAlgorithm.cs - Modified implementation of Iteration()
+FilePersistence.cs - Added support for direct input of networkXML lines.
+
+GATracker.cs - Genetic Algorithm Tracker used for tracking the children of splices/mutations
+	..GATracker is passed down the Genetic Algorithm execution stack so any changes there would also need copying over
