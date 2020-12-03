@@ -62,6 +62,8 @@ namespace PokerBot.AI.InfoProviders
     protected static Dictionary<InfoProviderType, Action> slowUpdateTaskDelegates = new Dictionary<InfoProviderType, Action>();
     protected static List<Task> slowUpdateTasksList;
 
+    public static Object CurrentJob { get; set; }
+
     public InfoProviderBase(InfoCollection information, InfoProviderType providerType, Dictionary<InfoProviderType, InfoProviderBase> allInformationProviders, AIRandomControl aiRandomControl)
     {
       //this.disableTrueRandomness = disableTrueRandomness;
