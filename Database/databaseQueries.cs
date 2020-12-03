@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using PokerBot.Definitions;
 
@@ -158,6 +159,45 @@ namespace PokerBot.Database
       {
         throw new NotImplementedException();
       }
+    }
+
+    public static string[] AiDefaultConfigs(int requestedAIGeneration)
+    {
+      if (databaseOffline)
+      {
+        //Load default ai configs from manual file and return
+        string aiDefaultConfigsLocation = Environment.GetEnvironmentVariable("AiDefaultConfigsLocation");
+
+        if (File.Exists(aiDefaultConfigsLocation))
+        {
+          string[] fileLines = File.ReadAllLines(aiDefaultConfigsLocation);
+
+          for (int i = 1; i < fileLines.Length; i++)
+          {
+            string[] lineElements = fileLines[i].Split(',');
+
+            int generation = int.Parse(lineElements[0]);
+            if (generation == requestedAIGeneration)
+            {
+              return lineElements[2].Split('|');
+            }
+            else
+            {
+              continue;
+            }
+          }
+        }
+        else
+        {
+          throw new FileNotFoundException("Failed to find AiConfigsFile " + aiDefaultConfigsLocation);
+        }
+      }
+      else
+      {
+        throw new NotImplementedException();
+      }
+
+      throw new ArgumentException("The requested AI generation " + requestedAIGeneration + " was not found.");
     }
 
     public static string GenerateNewPlayerName(string startingName, short pokerClientId, bool obfuscate)

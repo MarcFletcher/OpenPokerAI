@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0A452B29-83ED-4C84-8A06-CEEF7F879569}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{F5EEDD36-9048-4389-B5DD-8B3732B67EA2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PokerBot.AI.ProviderPAP</RootNamespace>
-    <AssemblyName>ProviderPAP</AssemblyName>
+    <RootNamespace>PokerBot.BotGame</RootNamespace>
+    <AssemblyName>PokerBot.BotGame</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -55,7 +55,28 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\default.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NetworkCommsDotNet, Version=3.0.0.0, Culture=neutral, PublicKeyToken=f58108eb6480f6ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetworkCommsDotNet.3.0.3\lib\NetworkCommsDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -70,43 +91,95 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlayerActionPredictionProvider.cs" />
-    <Compile Include="PlayerNetworkManager.cs" />
-    <Compile Include="PokerPlayerNNModelv1.cs" />
+    <Compile Include="AISelectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AISelectionControl.Designer.cs">
+      <DependentUpon>AISelectionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BotVsBot.cs" />
+    <Compile Include="BotVsHuman.cs" />
+    <Compile Include="CardsManager.cs" />
+    <Compile Include="GeneticNeuralTraining.cs" />
+    <Compile Include="ManualNeuralTraining.cs" />
+    <Compile Include="PokerGameBase.cs" />
+    <Compile Include="BotGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BotGame.Designer.cs">
+      <DependentUpon>BotGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PokerGameTypes.cs" />
+    <Compile Include="PokerHelper.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrainPAP.cs" />
-    <Compile Include="_OtherPAPProvider.cs" />
-    <Compile Include="_RaiseToCallProvider.cs" />
-    <Compile Include="_RaiseToStealProvider.cs" />
-    <Compile Include="_SharedMethods.cs" />
+    <EmbeddedResource Include="AISelectionControl.resx">
+      <DependentUpon>AISelectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BotGame.resx">
+      <DependentUpon>BotGame.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <AdditionalFiles Include="..\stylecop.json">
+      <Link>stylecop.json</Link>
+    </AdditionalFiles>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CacheMonitor\CacheMonitor.csproj">
+      <Project>{6689AD67-D27F-4401-99A3-5B4C56B98013}</Project>
+      <Name>CacheMonitor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{6f2a208a-b980-466d-a143-a9604999cba2}</Project>
       <Name>Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EncogFramework2.5\EncogFramework2.5.csproj">
-      <Project>{8C22B855-C38D-4A24-A575-938C883CF6D0}</Project>
-      <Name>EncogFramework2.5</Name>
+    <ProjectReference Include="..\PokerBotAI\PokerBotAI.csproj">
+      <Project>{3afb39af-86c3-446b-8324-305b74e96e95}</Project>
+      <Name>PokerBotAI</Name>
     </ProjectReference>
     <ProjectReference Include="..\PokerDefinitions\PokerDefinitions.csproj">
       <Project>{6C640C23-0F8C-40B8-9A24-44CA5BACA5B0}</Project>
       <Name>PokerDefinitions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProviderAggression\ProviderAggression.csproj">
-      <Project>{91C42EE3-427E-4547-A83C-5AAAB529570C}</Project>
-      <Name>ProviderAggression</Name>
+    <ProjectReference Include="..\ProtobufSerializer\ProtobufSerializer.csproj">
+      <Project>{f27e4076-1ddc-485f-9a75-915a74d7958d}</Project>
+      <Name>ProtobufSerializer</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProviderBase\ProviderBase.csproj">
-      <Project>{6921031B-F795-45E2-8689-5B7383B5CF37}</Project>
+      <Project>{6921031b-f795-45e2-8689-5b7383b5cf37}</Project>
       <Name>ProviderBase</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <ProjectReference Include="..\SharpZipLibCompressor\SharpZipLibCompressor.csproj">
+      <Project>{e10b41f4-696d-465c-963d-086488e2b6aa}</Project>
+      <Name>SharpZipLibCompressor</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -124,13 +197,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="..\stylecop.json">
-      <Link>stylecop.json</Link>
-    </AdditionalFiles>
-    <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.CSharp.CodeStyle.3.8.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CodeStyle.dll" />
