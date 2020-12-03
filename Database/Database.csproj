@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6C640C23-0F8C-40B8-9A24-44CA5BACA5B0}</ProjectGuid>
+    <ProjectGuid>{6F2A208A-B980-466D-A143-A9604999CBA2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PokerBot.Definitions</RootNamespace>
-    <AssemblyName>PokerDefinitions</AssemblyName>
+    <RootNamespace>PokerBot.Database</RootNamespace>
+    <AssemblyName>PokerBot.Database</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -33,7 +33,6 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
-    <SonarQubeTestProject>False</SonarQubeTestProject>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -63,7 +62,7 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>..\default.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -72,9 +71,12 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>..\default.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NetworkCommsDotNet, Version=3.0.0.0, Culture=neutral, PublicKeyToken=f58108eb6480f6ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetworkCommsDotNet.3.0.3\lib\NetworkCommsDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
     </Reference>
@@ -82,7 +84,14 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Management" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -93,30 +102,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Action.cs" />
-    <Compile Include="AIGenerations.cs" />
-    <Compile Include="AIRandomControl.cs" />
-    <Compile Include="Card.cs" />
-    <Compile Include="CacheError.cs" />
-    <Compile Include="CMWCRNG.cs" />
-    <Compile Include="HandDataSource.cs" />
-    <Compile Include="LogError.cs" />
-    <Compile Include="LongBitCount.cs" />
-    <Compile Include="MemoryUsage.cs" />
-    <Compile Include="MTRNG.cs" />
-    <Compile Include="ConcurrencyMode.cs" />
-    <Compile Include="Deck.cs" />
-    <Compile Include="HandRank.cs" />
-    <Compile Include="HandState.cs" />
-    <Compile Include="Math.cs" />
-    <Compile Include="Play.cs" />
-    <Compile Include="PlayerResultData.cs" />
-    <Compile Include="PlayerState.cs" />
-    <Compile Include="PokerClientIds.cs" />
-    <Compile Include="PokerPlayer.cs" />
+    <Compile Include="databaseCacheClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="databaseSnapshotUsage.cs" />
+    <Compile Include="databaseQueries.cs" />
+    <Compile Include="DataStructs.cs" />
+    <Compile Include="RAMDatabase.cs" />
+    <Compile Include="RAMDatabaseCSP.cs" />
+    <Compile Include="RAMDatabasePlayers.cs" />
+    <Compile Include="_databaseCacheMain.cs" />
+    <Compile Include="_databaseCacheGameDataAccess.cs" />
+    <Compile Include="databaseCacheServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RaiseAmountsHelper.cs" />
-    <Compile Include="ShuffleList.cs" />
+    <Compile Include="_databaseCacheGameData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PokerDefinitions\PokerDefinitions.csproj">
+      <Project>{6c640c23-0f8c-40b8-9a24-44ca5baca5b0}</Project>
+      <Name>PokerDefinitions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProtobufSerializer\ProtobufSerializer.csproj">
+      <Project>{f27e4076-1ddc-485f-9a75-915a74d7958d}</Project>
+      <Name>ProtobufSerializer</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -148,6 +162,9 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.CSharp.CodeStyle.3.8.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.CodeStyle.Fixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
