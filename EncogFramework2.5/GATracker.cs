@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -124,7 +124,7 @@ namespace Encog
         {
             try
             {
-                return DPSManager.GetDataSerializer<ProtobufSerializer>().DeserialiseDataObject<GATracker>(File.ReadAllBytes(Path.Combine(loadLocation, "GATracker.gat")), new List<DataProcessor>() { DPSManager.GetDataProcessor<QuickLZCompressor.QuickLZ>() }, new Dictionary<string, string>());
+                return DPSManager.GetDataSerializer<ProtobufSerializer>().DeserialiseDataObject<GATracker>(File.ReadAllBytes(Path.Combine(loadLocation, "GATracker.gat")));
             }
             catch (Exception)
             {
@@ -142,7 +142,7 @@ namespace Encog
         {
             lock (locker)
             {
-                File.WriteAllBytes(saveLocation + "\\GATracker.gat", DPSManager.GetDataSerializer<ProtobufSerializer>().SerialiseDataObject<GATracker>(this, new List<DataProcessor>() { DPSManager.GetDataProcessor<QuickLZCompressor.QuickLZ>() }, new Dictionary<string, string>()).ThreadSafeStream.ToArray());
+                File.WriteAllBytes(saveLocation + "\\GATracker.gat", DPSManager.GetDataSerializer<ProtobufSerializer>().SerialiseDataObject<GATracker>(this).ThreadSafeStream.ToArray());
                 if (includeLogFile) WriteOutLogFile(saveLocation);
             }
         }
