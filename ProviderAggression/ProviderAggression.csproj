@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeAnalysis.CSharp.CodeStyle.3.8.0\build\Microsoft.CodeAnalysis.CSharp.CodeStyle.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.CSharp.CodeStyle.3.8.0\build\Microsoft.CodeAnalysis.CSharp.CodeStyle.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{91C42EE3-427E-4547-A83C-5AAAB529570C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProviderAggression</RootNamespace>
+    <AssemblyName>ProviderAggression</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\default.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AggressionProvider.cs" />
+    <Compile Include="AggressionNNModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{6F2A208A-B980-466D-A143-A9604999CBA2}</Project>
+      <Name>DatabaseManagment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EncogFramework2.5\EncogFramework2.5.csproj">
+      <Project>{8C22B855-C38D-4A24-A575-938C883CF6D0}</Project>
+      <Name>EncogFramework2.5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PokerDefinitions\PokerDefinitions.csproj">
+      <Project>{6C640C23-0F8C-40B8-9A24-44CA5BACA5B0}</Project>
+      <Name>PokerDefinitions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProviderBase\ProviderBase.csproj">
+      <Project>{6921031B-F795-45E2-8689-5B7383B5CF37}</Project>
+      <Name>ProviderBase</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\stylecop.json">
+      <Link>stylecop.json</Link>
+    </AdditionalFiles>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.CSharp.CodeStyle.3.8.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CodeStyle.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.CSharp.CodeStyle.3.8.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CodeStyle.Fixes.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.CSharp.CodeStyle.3.8.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.CodeStyle.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.CSharp.CodeStyle.3.8.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.CodeStyle.Fixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.CSharp.CodeStyle.3.8.0\build\Microsoft.CodeAnalysis.CSharp.CodeStyle.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.CSharp.CodeStyle.3.8.0\build\Microsoft.CodeAnalysis.CSharp.CodeStyle.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -59,9 +59,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Cloo.dll</HintPath>
     </Reference>
-    <Reference Include="NetworkCommsDotNetComplete">
-      <HintPath>..\NetworkCommsDotNetComplete.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -582,12 +579,6 @@
   <ItemGroup>
     <Content Include="Cloo.dll" />
     <Content Include="FBPChanges.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WebManagement\WebManagement.csproj">
-      <Project>{57F43FB7-C81D-435D-BB19-13F72DF0FE06}</Project>
-      <Name>WebManagement</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
