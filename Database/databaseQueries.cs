@@ -512,6 +512,16 @@ namespace PokerBot.Database
       }
     }
 
+    /// <summary>
+    /// Returns the playerActionPrediction data from the database.
+    /// </summary>
+    /// <param name="playerId"></param>
+    /// <returns></returns>
+    public static NNPlayerModellingDataResult[] playerActionPredictionData(long playerId, int maxActions, long startingHandId)
+    {
+      throw new NotImplementedException();
+    }
+
     public static long[] CreateNewBotPlayers(short pokerClientId, int aiType, string[] playerNames, string[] aiConfigStrs)
     {
       if (databaseOffline && databaseCache.databaseRAM != null)
@@ -592,6 +602,11 @@ namespace PokerBot.Database
       }
 
       return (from ids in playerIds orderby ids ascending select ids).ToArray();
+    }
+
+    public static int getNumPlayerHandActions(long playerId, bool postFlopOnly, int maxActions, ref long startId)
+    {
+      throw new NotImplementedException();
     }
 
     public static string convertToPlayerNameFromId(long playerId)

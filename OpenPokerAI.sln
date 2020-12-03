@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncogFramework2.5", "EncogF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProviderAggression", "ProviderAggression\ProviderAggression.csproj", "{91C42EE3-427E-4547-A83C-5AAAB529570C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProviderPAP", "ProviderPAP\ProviderPAP.csproj", "{0A452B29-83ED-4C84-8A06-CEEF7F879569}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,14 @@ Global
 		{91C42EE3-427E-4547-A83C-5AAAB529570C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{91C42EE3-427E-4547-A83C-5AAAB529570C}.Release|x86.ActiveCfg = Release|Any CPU
 		{91C42EE3-427E-4547-A83C-5AAAB529570C}.Release|x86.Build.0 = Release|Any CPU
+		{0A452B29-83ED-4C84-8A06-CEEF7F879569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A452B29-83ED-4C84-8A06-CEEF7F879569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A452B29-83ED-4C84-8A06-CEEF7F879569}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0A452B29-83ED-4C84-8A06-CEEF7F879569}.Debug|x86.Build.0 = Debug|Any CPU
+		{0A452B29-83ED-4C84-8A06-CEEF7F879569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A452B29-83ED-4C84-8A06-CEEF7F879569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A452B29-83ED-4C84-8A06-CEEF7F879569}.Release|x86.ActiveCfg = Release|Any CPU
+		{0A452B29-83ED-4C84-8A06-CEEF7F879569}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +125,7 @@ Global
 		{E10B41F4-696D-465C-963D-086488E2B6AA} = {4F5EC782-89E8-4FE3-AEE9-80C1D8ABE5E7}
 		{8C22B855-C38D-4A24-A575-938C883CF6D0} = {4A5D97B8-5387-4523-AD56-7D10D0DDEE89}
 		{91C42EE3-427E-4547-A83C-5AAAB529570C} = {4A5D97B8-5387-4523-AD56-7D10D0DDEE89}
+		{0A452B29-83ED-4C84-8A06-CEEF7F879569} = {4A5D97B8-5387-4523-AD56-7D10D0DDEE89}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3E35C0F9-F770-4243-9BE1-9E8261E80A14}
