@@ -61,7 +61,7 @@ namespace PokerBot.BotGame
         do
         {
           Thread.Sleep(500);
-        } while (!cacheMonitor.ManualDecisionMade);
+        } while (!cacheMonitor.ManualDecisionMade && !cacheMonitor.IsDisposed);
 
         //Validate the manual here
         //If the one provided is invalid we just pass it through our fixer function.

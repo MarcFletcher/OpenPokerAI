@@ -21,7 +21,7 @@ namespace PokerBot.AI.ProviderPAP
     object locker = new object();
 
     protected static string FILES_STORE = Environment.GetEnvironmentVariable("PlayerActionPredictionLocation");
-    protected static string PAP_STORE = FILES_STORE + "PAPv1\\";
+    protected static string PAP_STORE = Path.Combine(FILES_STORE, "PAPv1\\");
     protected volatile bool closeThread = false;
 
     protected static int minActionsRequiredForNetwork = 100;

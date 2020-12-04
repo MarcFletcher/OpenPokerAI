@@ -622,27 +622,22 @@ namespace PokerBot.AI.ProviderWinRatio
             //If we cannot find files in the default positions we look in the registry
             if (!File.Exists(riverWinPercentageFile) || !File.Exists(turnWinPercentageFile) || !File.Exists(flopWinPercentageFile) || !File.Exists(preFlopFile) || !File.Exists(preFlopRanksFile))
             {
-              //If one of the files is missing go to the registry and see if a link exists there
-              RegistryKey key = Registry.LocalMachine.OpenSubKey("Software\\FullBotPoker");
               try
               {
-                if (key != null)
-                {
-                  preFlopFile = key.GetValue("WRpreflop.dat", "Y:\\WR\\PreflopWP.dat") as string;
-                  preFlopRanksFile = key.GetValue("WRpreflopRanks.dat", "Y:\\WR\\PreflopRanks.dat") as string;
-                  flopWinPercentageFile = key.GetValue("WRflop.dat", "Y:\\WR\\Flop.dat") as string;
-                  turnWinPercentageFile = key.GetValue("WRturn.dat", "Y:\\WR\\Turn.dat") as string;
-                  riverWinPercentageFile = key.GetValue("WRriver.dat", "Y:\\WR\\River.dat") as string;
-                  flopIndexFile = key.GetValue("WRflopIndex.dat", "E:\\WR results\\Indexes\\Flop\\3_52.dat") as string;
-                  turnIndexFile = key.GetValue("WRturnIndex.dat", "E:\\WR results\\Indexes\\Turn\\4_52.dat") as string;
-                  riverIndexFile = key.GetValue("WRriverIndex.dat", "E:\\WR results\\Indexes\\River\\5_52.dat") as string;
+                preFlopFile = Environment.GetEnvironmentVariable("preflopWP");
+                preFlopRanksFile = Environment.GetEnvironmentVariable("preflopRanks");
+                flopWinPercentageFile = Environment.GetEnvironmentVariable("flopWP");
+                turnWinPercentageFile = Environment.GetEnvironmentVariable("turnWP");
+                riverWinPercentageFile = Environment.GetEnvironmentVariable("riverWP");
+                flopIndexFile = Environment.GetEnvironmentVariable("flopIndexes");
+                turnIndexFile = Environment.GetEnvironmentVariable("turnIndexes");
+                riverIndexFile = Environment.GetEnvironmentVariable("riverIndexes");
 
-                  if (!useOldLookupMethod)
-                  {
-                    flopLocationFile = key.GetValue("WRflopLocation.dat", "Y:\\WRLocations\\flopLocations.dat") as string;
-                    turnLocationFile = key.GetValue("WRturnLocation.dat", "Y:\\WRLocations\\turnLocations.dat") as string;
-                    riverLocationFile = key.GetValue("WRriverLocation.dat", "Y:\\WRLocations\\riverLocations.dat") as string;
-                  }
+                if (!useOldLookupMethod)
+                {
+                  flopLocationFile = Environment.GetEnvironmentVariable("flopLocations");
+                  turnLocationFile = Environment.GetEnvironmentVariable("turnLocations");
+                  riverLocationFile = Environment.GetEnvironmentVariable("riverLocations");
                 }
                 else
                 {
@@ -654,8 +649,6 @@ namespace PokerBot.AI.ProviderWinRatio
                 throw ex;
               }
             }
-
-
 
             winRatiosByTable = new Dictionary<long, WinRatioEntry>();
             tableModels = new Dictionary<long, TableModel>();

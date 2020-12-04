@@ -67,7 +67,7 @@ namespace PokerBot.AI
         try
         {
           //If we have not already loaded the handRanks data then we check to make sure the file exists
-          if (!File.Exists(Environment.GetEnvironmentVariable("handRanksLocation")))
+          if (!File.Exists(Environment.GetEnvironmentVariable("HandRanksLocation")))
             throw new Exception("Unable to locate handRank file.");
 
           //If the file existed it will be loaded the first time we try to use it

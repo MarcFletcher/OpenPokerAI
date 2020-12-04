@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 using PokerBot.Definitions;
 using PokerBot.Database;
+using PokerBot.AI;
+using System.IO;
 
 // We want to create 10 new players with random WR limits (between 0 and 5)
 // We play the game until the first player is sat out
@@ -28,7 +30,23 @@ namespace PokerBot.BotGame
     public BotGame()
     {
       //By default set the database offline
-      databaseQueries.SetDatabaseLocalMode("Resources\\ManualPlayersTable.csv");
+      databaseQueries.SetDatabaseLocalMode(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Resources\\ManualPlayersTable.csv"));
+      Environment.SetEnvironmentVariable("ManualPlayersTable", "D:\\PokerBot\\HoleCardUsageDat");
+      Environment.SetEnvironmentVariable("HoleCardUsageDir", "D:\\PokerBot\\HoleCardUsageDat");
+      Environment.SetEnvironmentVariable("PlayerActionPredictionLocation", "D:\\PokerBot\\LocalFBPStore\\PlayerActionPrediction");
+      Environment.SetEnvironmentVariable("HandRanksLocation", "D:\\PokerBot\\HandRanksFile\\HandRanks.dat");
+
+      Environment.SetEnvironmentVariable("preflopWP", "D:\\PokerBot\\WPLookupTables\\preflopWP.dat");
+      Environment.SetEnvironmentVariable("preflopRanks", "D:\\PokerBot\\WPLookupTables\\preflopRanks.dat");
+      Environment.SetEnvironmentVariable("flopWP", "D:\\PokerBot\\WPLookupTables\\flopWP.dat");
+      Environment.SetEnvironmentVariable("turnWP", "D:\\PokerBot\\WPLookupTables\\turnWP.dat");
+      Environment.SetEnvironmentVariable("riverWP", "D:\\PokerBot\\WPLookupTables\\riverWP.dat");
+      Environment.SetEnvironmentVariable("flopIndexes", "D:\\PokerBot\\WPLookupTables\\Indexes\\flopIndexes.dat");
+      Environment.SetEnvironmentVariable("turnIndexes", "D:\\PokerBot\\WPLookupTables\\Indexes\\turnIndexes.dat");
+      Environment.SetEnvironmentVariable("riverIndexes", "D:\\PokerBot\\WPLookupTables\\Indexes\\riverIndexes.dat");
+      Environment.SetEnvironmentVariable("flopLocations", "D:\\PokerBot\\WPLookupTables\\Locations\\flopLocations.dat");
+      Environment.SetEnvironmentVariable("turnLocations", "D:\\PokerBot\\WPLookupTables\\Locations\\turnLocations.dat");
+      Environment.SetEnvironmentVariable("riverLocations", "D:\\PokerBot\\WPLookupTables\\Locations\\riverLocations.dat");
 
       InitializeComponent();
     }
@@ -189,8 +207,8 @@ namespace PokerBot.BotGame
 
       if (playPoker.Text == "Play Poker")
       {
+        PokerClients client = PokerClients.HumanVsBots;
         int actionPauseTime = int.Parse(this.actionPause.Text);
-        bool useRemoteAiServer = this.useAiServer.Checked;
         byte minNumTablePlayers = 2;
 
         AISelection[] selectedPlayers = this.aiSelectionControl1.AISelection();
@@ -199,20 +217,21 @@ namespace PokerBot.BotGame
         if (selectedPlayers.Length > 10)
           throw new Exception("A maximum of 10 players is allowed.");
 
-        long[] newPlayerIds = PokerHelper.CreateOpponentPlayers(selectedPlayers, obfuscateBots.Checked, 18);
+        databaseCache.InitialiseRAMDatabase();
+
+        long[] newPlayerIds = PokerHelper.CreateOpponentPlayers(selectedPlayers, obfuscateBots.Checked, (short)client);
         string[] selectedPlayerNames = new string[newPlayerIds.Length];
         for (int i = 0; i < newPlayerIds.Length; i++)
           selectedPlayerNames[i] = databaseQueries.convertToPlayerNameFromId(newPlayerIds[i]);
 
         //Shuffle the player list so we have absolutly no idea who is who.
         selectedPlayerNames = shuffleList(selectedPlayerNames.ToList()).ToArray();
-
-        databaseCache.InitialiseRAMDatabase();
-        clientCache = new databaseCacheClient(18, this.gameName.Text, decimal.Parse(this.littleBlind.Text), decimal.Parse(this.bigBlind.Text), decimal.Parse(this.startingStack.Text), 10, HandDataSource.PlayingTest);
+        clientCache = new databaseCacheClient((short)client, this.gameName.Text, decimal.Parse(this.littleBlind.Text), decimal.Parse(this.bigBlind.Text), decimal.Parse(this.startingStack.Text), 10, HandDataSource.PlayingTest);
         CacheMonitor.CacheMonitor cacheMonitor = new PokerBot.CacheMonitor.CacheMonitor(clientCache, !showAllCards.Checked);
 
         pokerGame = new BotVsHumanPokerGame(PokerGameType.BotVsHuman, clientCache, minNumTablePlayers, selectedPlayerNames, Decimal.Parse(startingStack.Text), 0, Int16.Parse(actionPause.Text), cacheMonitor);
         pokerGame.startGameTask();
+        pokerGame.ShutdownAIOnFinish();
 
         cacheMonitor.Show();
         playPoker.Text = "End Game";

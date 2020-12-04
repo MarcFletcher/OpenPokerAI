@@ -34,7 +34,6 @@
       this.aiSelectionControl1 = new PokerBot.BotGame.AISelectionControl();
       this.label16 = new System.Windows.Forms.Label();
       this.actionPause = new System.Windows.Forms.TextBox();
-      this.useAiServer = new System.Windows.Forms.CheckBox();
       this.playPoker = new System.Windows.Forms.Button();
       this.obfuscateBots = new System.Windows.Forms.CheckBox();
       this.label17 = new System.Windows.Forms.Label();
@@ -122,7 +121,6 @@
       this.botVHuman.Controls.Add(this.aiSelectionControl1);
       this.botVHuman.Controls.Add(this.label16);
       this.botVHuman.Controls.Add(this.actionPause);
-      this.botVHuman.Controls.Add(this.useAiServer);
       this.botVHuman.Controls.Add(this.playPoker);
       this.botVHuman.Controls.Add(this.obfuscateBots);
       this.botVHuman.Controls.Add(this.label17);
@@ -168,16 +166,6 @@
       this.actionPause.Size = new System.Drawing.Size(59, 20);
       this.actionPause.TabIndex = 43;
       this.actionPause.Text = "1000";
-      // 
-      // useAiServer
-      // 
-      this.useAiServer.AutoSize = true;
-      this.useAiServer.Location = new System.Drawing.Point(192, 39);
-      this.useAiServer.Name = "useAiServer";
-      this.useAiServer.Size = new System.Drawing.Size(132, 17);
-      this.useAiServer.TabIndex = 40;
-      this.useAiServer.Text = "Use Remote AI Server";
-      this.useAiServer.UseVisualStyleBackColor = true;
       // 
       // playPoker
       // 
@@ -950,7 +938,6 @@
     private System.Windows.Forms.Button playPoker;
     private System.Windows.Forms.Label label16;
     private System.Windows.Forms.TextBox actionPause;
-    private System.Windows.Forms.CheckBox useAiServer;
     private AISelectionControl aiSelectionControl1;
     private System.Windows.Forms.CheckBox showAllCards;
   }

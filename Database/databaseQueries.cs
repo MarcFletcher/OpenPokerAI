@@ -680,8 +680,32 @@ namespace PokerBot.Database
     /// <returns></returns>
     public static PokerPlayer playerDetailsByPlayerName(string playerName, short pokerClientId)
     {
-      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null)
-        return databaseCache.databaseRAM.PlayerDetails(playerName, (PokerClients)pokerClientId);
+      if (DatabaseMode.LOCALMODE.Equals(Mode))
+      {
+        if (databaseCache.databaseRAM != null)
+        {
+          return databaseCache.databaseRAM.PlayerDetails(playerName, (PokerClients)pokerClientId);
+        }
+        else
+        {
+          string[] fileLines = File.ReadAllLines(manualPlayersTableFileLocation);
+          for (int i = 1; i < fileLines.Length; i++)
+          {
+            string[] lineElements = fileLines[i].Split(',');
+
+            if (lineElements[1].Equals(playerName) && lineElements[2].Equals(Convert.ToString(pokerClientId)))
+            {
+              AIGeneration generation =
+                (AIGeneration)Enum.Parse(typeof(AIGeneration), lineElements[3]);
+
+              return new PokerPlayer(long.Parse(lineElements[0]), playerName, pokerClientId,
+                generation, lineElements[4]);
+            }
+          }
+
+          return null;
+        }
+      }
       else
       {
         throw new NotImplementedException();
