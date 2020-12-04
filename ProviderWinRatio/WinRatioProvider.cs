@@ -624,20 +624,20 @@ namespace PokerBot.AI.ProviderWinRatio
             {
               try
               {
-                preFlopFile = Environment.GetEnvironmentVariable("preflopWP");
-                preFlopRanksFile = Environment.GetEnvironmentVariable("preflopRanks");
-                flopWinPercentageFile = Environment.GetEnvironmentVariable("flopWP");
-                turnWinPercentageFile = Environment.GetEnvironmentVariable("turnWP");
-                riverWinPercentageFile = Environment.GetEnvironmentVariable("riverWP");
-                flopIndexFile = Environment.GetEnvironmentVariable("flopIndexes");
-                turnIndexFile = Environment.GetEnvironmentVariable("turnIndexes");
-                riverIndexFile = Environment.GetEnvironmentVariable("riverIndexes");
+                preFlopFile = Environment.GetEnvironmentVariable("preflopWPFile");
+                preFlopRanksFile = Environment.GetEnvironmentVariable("preflopRanksFile");
+                flopWinPercentageFile = Environment.GetEnvironmentVariable("flopWPFile");
+                turnWinPercentageFile = Environment.GetEnvironmentVariable("turnWPFile");
+                riverWinPercentageFile = Environment.GetEnvironmentVariable("riverWPFile");
+                flopIndexFile = Environment.GetEnvironmentVariable("flopIndexesFile");
+                turnIndexFile = Environment.GetEnvironmentVariable("turnIndexesFile");
+                riverIndexFile = Environment.GetEnvironmentVariable("riverIndexesFile");
 
                 if (!useOldLookupMethod)
                 {
-                  flopLocationFile = Environment.GetEnvironmentVariable("flopLocations");
-                  turnLocationFile = Environment.GetEnvironmentVariable("turnLocations");
-                  riverLocationFile = Environment.GetEnvironmentVariable("riverLocations");
+                  flopLocationFile = Environment.GetEnvironmentVariable("flopLocationsFile");
+                  turnLocationFile = Environment.GetEnvironmentVariable("turnLocationsFile");
+                  riverLocationFile = Environment.GetEnvironmentVariable("riverLocationsFile");
                 }
                 else
                 {

@@ -152,7 +152,7 @@ namespace PokerBot.Definitions
       //Load hand rank for any CPU calculations
       handRank = new int[32487834];
 
-      String handRanksLocation = Environment.GetEnvironmentVariable("HandRanksLocation");
+      String handRanksLocation = Environment.GetEnvironmentVariable("HandRanksFile");
       if (File.Exists(handRanksLocation))
       {
         BinaryReader HandRankFile = new BinaryReader(File.OpenRead(handRanksLocation));

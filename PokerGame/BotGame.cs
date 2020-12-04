@@ -31,22 +31,21 @@ namespace PokerBot.BotGame
     {
       //By default set the database offline
       databaseQueries.SetDatabaseLocalMode(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Resources\\ManualPlayersTable.csv"));
-      Environment.SetEnvironmentVariable("ManualPlayersTable", "D:\\PokerBot\\HoleCardUsageDat");
       Environment.SetEnvironmentVariable("HoleCardUsageDir", "D:\\PokerBot\\HoleCardUsageDat");
-      Environment.SetEnvironmentVariable("PlayerActionPredictionLocation", "D:\\PokerBot\\LocalFBPStore\\PlayerActionPrediction");
-      Environment.SetEnvironmentVariable("HandRanksLocation", "D:\\PokerBot\\HandRanksFile\\HandRanks.dat");
+      Environment.SetEnvironmentVariable("PlayerActionPredictionDir", "D:\\PokerBot\\LocalFBPStore\\PlayerActionPrediction");
+      Environment.SetEnvironmentVariable("HandRanksFile", "D:\\PokerBot\\HandRanksFile\\HandRanks.dat");
 
-      Environment.SetEnvironmentVariable("preflopWP", "D:\\PokerBot\\WPLookupTables\\preflopWP.dat");
-      Environment.SetEnvironmentVariable("preflopRanks", "D:\\PokerBot\\WPLookupTables\\preflopRanks.dat");
-      Environment.SetEnvironmentVariable("flopWP", "D:\\PokerBot\\WPLookupTables\\flopWP.dat");
-      Environment.SetEnvironmentVariable("turnWP", "D:\\PokerBot\\WPLookupTables\\turnWP.dat");
-      Environment.SetEnvironmentVariable("riverWP", "D:\\PokerBot\\WPLookupTables\\riverWP.dat");
-      Environment.SetEnvironmentVariable("flopIndexes", "D:\\PokerBot\\WPLookupTables\\Indexes\\flopIndexes.dat");
-      Environment.SetEnvironmentVariable("turnIndexes", "D:\\PokerBot\\WPLookupTables\\Indexes\\turnIndexes.dat");
-      Environment.SetEnvironmentVariable("riverIndexes", "D:\\PokerBot\\WPLookupTables\\Indexes\\riverIndexes.dat");
-      Environment.SetEnvironmentVariable("flopLocations", "D:\\PokerBot\\WPLookupTables\\Locations\\flopLocations.dat");
-      Environment.SetEnvironmentVariable("turnLocations", "D:\\PokerBot\\WPLookupTables\\Locations\\turnLocations.dat");
-      Environment.SetEnvironmentVariable("riverLocations", "D:\\PokerBot\\WPLookupTables\\Locations\\riverLocations.dat");
+      Environment.SetEnvironmentVariable("preflopWPFile", "D:\\PokerBot\\WPLookupTables\\preflopWP.dat");
+      Environment.SetEnvironmentVariable("preflopRanksFile", "D:\\PokerBot\\WPLookupTables\\preflopRanks.dat");
+      Environment.SetEnvironmentVariable("flopWPFile", "D:\\PokerBot\\WPLookupTables\\flopWP.dat");
+      Environment.SetEnvironmentVariable("turnWPFile", "D:\\PokerBot\\WPLookupTables\\turnWP.dat");
+      Environment.SetEnvironmentVariable("riverWPFile", "D:\\PokerBot\\WPLookupTables\\riverWP.dat");
+      Environment.SetEnvironmentVariable("flopIndexesFile", "D:\\PokerBot\\WPLookupTables\\Indexes\\flopIndexes.dat");
+      Environment.SetEnvironmentVariable("turnIndexesFile", "D:\\PokerBot\\WPLookupTables\\Indexes\\turnIndexes.dat");
+      Environment.SetEnvironmentVariable("riverIndexesFile", "D:\\PokerBot\\WPLookupTables\\Indexes\\riverIndexes.dat");
+      Environment.SetEnvironmentVariable("flopLocationsFile", "D:\\PokerBot\\WPLookupTables\\Locations\\flopLocations.dat");
+      Environment.SetEnvironmentVariable("turnLocationsFile", "D:\\PokerBot\\WPLookupTables\\Locations\\turnLocations.dat");
+      Environment.SetEnvironmentVariable("riverLocationsFile", "D:\\PokerBot\\WPLookupTables\\Locations\\riverLocations.dat");
 
       InitializeComponent();
     }
