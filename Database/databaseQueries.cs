@@ -8,8 +8,29 @@ namespace PokerBot.Database
 {
   public static class databaseQueries
   {
+    public enum DatabaseMode
+    {
+      /// <summary>
+      /// Current state is undefined, i.e. has not been connected/configured yet
+      /// </summary>
+      UNDEFINED,
 
-    static bool databaseOffline = false;
+      /// <summary>
+      /// Database is configured to run locally, i.e. via text files.
+      /// </summary>
+      LOCALMODE,
+
+      /// <summary>
+      /// Database is connect to a dedicated remote database instance
+      /// </summary>
+      ONLINE,
+    }
+
+    /// <summary>
+    /// The current state of the database
+    /// </summary>
+    public static DatabaseMode Mode { get; private set; }
+
     static string manualPlayersTableFileLocation = "";
 
     public static string ManualPlayersTableFileLocation
@@ -21,21 +42,21 @@ namespace PokerBot.Database
     /// Allows us to the use the cache completely independantly from the database.
     /// </summary>
     /// <param name="ManualPlayersTableFileLocation"></param>
-    public static void SetDatabaseOffline(string ManualPlayersTableFileLocation)
+    public static void SetDatabaseLocalMode(string ManualPlayersTableFileLocation)
     {
-      databaseOffline = true;
+      Mode = DatabaseMode.LOCALMODE;
       manualPlayersTableFileLocation = ManualPlayersTableFileLocation;
     }
 
     public static void LoadManualPlayersTableFromDisk()
     {
-      if (databaseOffline && databaseCache.databaseRAM != null)
+      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null)
         databaseCache.databaseRAM.LoadManualPlayersTable(manualPlayersTableFileLocation);
     }
 
     public static void SaveManualPlayersTableToDisk()
     {
-      if (databaseOffline && databaseCache.databaseRAM != null)
+      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null)
         databaseCache.databaseRAM.SaveOutManualPlayersTable(manualPlayersTableFileLocation);
     }
 
@@ -50,7 +71,7 @@ namespace PokerBot.Database
 
     public static long[] ClientOpponentPlayerIds(short pokerClientId, List<int> excludeAIGenerations, int currentTrainingGenerationType)
     {
-      if (databaseOffline && databaseCache.databaseRAM != null)
+      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null)
         return databaseCache.databaseRAM.ClientOpponentPlayerIds((PokerClients)pokerClientId, excludeAIGenerations, currentTrainingGenerationType);
       else
       {
@@ -161,35 +182,32 @@ namespace PokerBot.Database
       }
     }
 
-    public static string[] AiDefaultConfigs(int requestedAIGeneration)
+    public static string[] AiDefaultConfigs(AIGeneration requestedAIGeneration)
     {
-      if (databaseOffline)
+      if (DatabaseMode.LOCALMODE.Equals(Mode))
       {
         //Load default ai configs from manual file and return
-        string aiDefaultConfigsLocation = Environment.GetEnvironmentVariable("AiDefaultConfigsLocation");
-
-        if (File.Exists(aiDefaultConfigsLocation))
+        if (File.Exists(manualPlayersTableFileLocation))
         {
-          string[] fileLines = File.ReadAllLines(aiDefaultConfigsLocation);
+          string[] fileLines = File.ReadAllLines(manualPlayersTableFileLocation);
 
           for (int i = 1; i < fileLines.Length; i++)
           {
             string[] lineElements = fileLines[i].Split(',');
 
-            int generation = int.Parse(lineElements[0]);
+            AIGeneration generation = (AIGeneration)Enum.Parse(typeof(AIGeneration), lineElements[3]);
             if (generation == requestedAIGeneration)
             {
-              return lineElements[2].Split('|');
-            }
-            else
-            {
-              continue;
+              return lineElements[4].Split('|');
             }
           }
+
+          //If we didn't find any config then just return empty
+          return new string[0];
         }
         else
         {
-          throw new FileNotFoundException("Failed to find AiConfigsFile " + aiDefaultConfigsLocation);
+          throw new FileNotFoundException("Failed to find AiConfigsFile " + manualPlayersTableFileLocation);
         }
       }
       else
@@ -204,7 +222,7 @@ namespace PokerBot.Database
     {
       string newPlayerName = "";
 
-      if (databaseOffline)
+      if (DatabaseMode.LOCALMODE.Equals(Mode))
       {
         List<string> obfuscatedNames = new List<string>() { "Bob", "Alice", "Charlene", "Eve", "Tak", "Marc", "Matt", "Ailwyn", "Edmund", "Lucifer", "Denis", "Kent", "Clark", "Bruce", "Peter", "Nike", "Steve", "Rio", "Tony", "Stan" };
         List<string> characters = new List<string>() { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -245,7 +263,7 @@ namespace PokerBot.Database
     /// <param name="aiConfigId"></param>
     public static void aiPlayerConfig(long playerId, out int aiType, out string aiConfigStr)
     {
-      if (databaseOffline && databaseCache.databaseRAM != null)
+      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null)
         databaseCache.databaseRAM.AIPlayerConfig(playerId, out aiType, out aiConfigStr);
       else
       {
@@ -362,7 +380,7 @@ namespace PokerBot.Database
     /// <param name="deletePlayers"></param>
     public static void deleteDatabaseData(short pokerClientId, bool deletePlayers)
     {
-      if (databaseOffline && databaseCache.databaseRAM != null && deletePlayers)
+      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null && deletePlayers)
       {
         //All we really need to delete at this point is the players
         databaseCache.databaseRAM.DeleteAllClientPlayersFromManualPlayersTable((PokerClients)pokerClientId);
@@ -375,7 +393,7 @@ namespace PokerBot.Database
 
     public static void DeleteLegacyTrainingPlayers(short pokerClientId, int generationNumToKeep)
     {
-      if (databaseOffline && databaseCache.databaseRAM != null)
+      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null)
         databaseCache.databaseRAM.DeleteLegacyTrainingPlayersFromManualPlayersTable((PokerClients)pokerClientId, generationNumToKeep);
       else
       {
@@ -564,7 +582,7 @@ namespace PokerBot.Database
 
     public static long[] CreateNewBotPlayers(short pokerClientId, int aiType, string[] playerNames, string[] aiConfigStrs)
     {
-      if (databaseOffline && databaseCache.databaseRAM != null)
+      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null)
         return databaseCache.databaseRAM.AddPlayersToManualPlayersTable((PokerClients)pokerClientId, aiType, playerNames, aiConfigStrs);
       else
         throw new NotImplementedException("CreateNewBotPlayers only implemented for offline RAM database.");
@@ -582,7 +600,7 @@ namespace PokerBot.Database
     {
       long newPlayerId;
 
-      if (databaseOffline && databaseCache.databaseRAM != null)
+      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null)
         newPlayerId = databaseCache.databaseRAM.AddPlayerToManualPlayersTable(playerName, (PokerClients)pokerClientId, aiType, aiConfigStr);
       else
       {
@@ -615,7 +633,7 @@ namespace PokerBot.Database
     {
       long[] playerIds = new long[aiConfigStr.Length];
 
-      if (databaseOffline && databaseCache.databaseRAM != null)
+      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null)
         playerIds = databaseCache.databaseRAM.PlayerIdsFromConfigStr(aiConfigStr, (PokerClients)pokerClientId);
       else
       {
@@ -634,7 +652,7 @@ namespace PokerBot.Database
     {
       long[] playerIds;
 
-      if (databaseOffline && databaseCache.databaseRAM != null)
+      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null)
         playerIds = databaseCache.databaseRAM.PlayerIdsFromAiType(aiType, (PokerClients)pokerClientId);
       else
       {
@@ -662,7 +680,7 @@ namespace PokerBot.Database
     /// <returns></returns>
     public static PokerPlayer playerDetailsByPlayerName(string playerName, short pokerClientId)
     {
-      if (databaseOffline && databaseCache.databaseRAM != null)
+      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null)
         return databaseCache.databaseRAM.PlayerDetails(playerName, (PokerClients)pokerClientId);
       else
       {
@@ -677,7 +695,7 @@ namespace PokerBot.Database
     /// <returns></returns>
     public static PokerPlayer playerDetailsByPlayerId(long playerId)
     {
-      if (databaseOffline && databaseCache.databaseRAM != null)
+      if (DatabaseMode.LOCALMODE.Equals(Mode) && databaseCache.databaseRAM != null)
         return databaseCache.databaseRAM.PlayerDetails(playerId);
       else
       {

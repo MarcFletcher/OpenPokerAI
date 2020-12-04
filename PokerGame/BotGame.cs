@@ -27,6 +27,9 @@ namespace PokerBot.BotGame
 
     public BotGame()
     {
+      //By default set the database offline
+      databaseQueries.SetDatabaseLocalMode("Resources\\ManualPlayersTable.csv");
+
       InitializeComponent();
     }
 
@@ -39,7 +42,10 @@ namespace PokerBot.BotGame
     {
       try
       {
-        pokerGame.EndGame = true;
+        if (pokerGame != null)
+        {
+          pokerGame.EndGame = true;
+        }
       }
       catch (Exception)
       {

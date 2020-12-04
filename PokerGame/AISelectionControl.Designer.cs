@@ -116,32 +116,44 @@ namespace PokerBot.BotGame
 
     private void SetupRows()
     {
-      for (int i = 0; i < typeof(AIGeneration).GetFields().Length - 2; i++)
+      foreach (AIGeneration generation in Enum.GetValues(typeof(AIGeneration)))
       {
         #region rowFields
+        if (generation == AIGeneration.Undefined)
+        {
+          continue;
+        }
+
+        int generationAsInt = (int)generation;
+
         //Create the label
         Label labelOne = new Label();
         labelOne.AutoSize = false;
-        labelOne.Location = new System.Drawing.Point(0, i * 25 + 30);
-        labelOne.Name = "lbl_" + Enum.GetName(typeof(AIGeneration), i);
+        labelOne.Location = new System.Drawing.Point(0, generationAsInt * 25 + 30);
+        labelOne.Name = "lbl_" + generation.ToString();
         labelOne.Size = new System.Drawing.Size(150, 30);
         labelOne.TabIndex = 0;
-        labelOne.Text = Enum.GetName(typeof(AIGeneration), i);
+        labelOne.Text = generation.ToString();
         labelOne.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
         this.Controls.Add(labelOne);
 
         TextBox textBox = new TextBox();
         textBox.Size = new Size(20, 30);
-        textBox.Name = Enum.GetName(typeof(AIGeneration), i) + "_quantity";
-        textBox.Location = new Point(165, i * 25 + 35);
+        textBox.Name = generation.ToString() + "_quantity";
+        textBox.Location = new Point(165, generationAsInt * 25 + 35);
         textBox.Text = "0";
         this.Controls.Add(textBox);
 
         ComboBox comboBox = new ComboBox();
         comboBox.Size = new Size(200, 30);
-        comboBox.Name = Enum.GetName(typeof(AIGeneration), i) + "_config";
-        comboBox.Location = new Point(200, i * 25 + 35);
-        comboBox.DataSource = databaseQueries.AiDefaultConfigs(i);
+        comboBox.Name = generation.ToString() + "_config";
+        comboBox.Location = new Point(200, generationAsInt * 25 + 35);
+
+        //// We can only load the real data if the database is configured
+        if (!databaseQueries.DatabaseMode.UNDEFINED.Equals(databaseQueries.Mode))
+        {
+          comboBox.DataSource = databaseQueries.AiDefaultConfigs(generation);
+        }
 
         this.Controls.Add(comboBox);
         #endregion
