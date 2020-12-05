@@ -274,9 +274,6 @@ namespace PokerBot.Database
         pokerHands = new SortedDictionary<long, SortedDictionary<long, databaseCache.pokerHand>>();
         holeCards = new Dictionary<long, Dictionary<long, databaseCache.holeCard>>();
         handActions = new SortedDictionary<long, List<databaseCache.handAction>>();
-
-        //Add blank player
-        AddPlayerToManualPlayersTable("", PokerClients.HumanVsBots, (int)AIGeneration.Undefined, "");
       }
 
 #if databaseLogging

@@ -42,11 +42,12 @@ namespace PokerBot.Database
       startWrite();
       currentPokerTable = new pokerTable(pokerClientId, littleBlind, bigBlind, maxStack, tableName, numberSeats, (byte)dataSource, this, (int)(randGen.NextDouble() * int.MaxValue));
 
-      for (byte i = 0; i < numberSeats; i++)
+      //Not sure why we tried to sit down dead players here as they are just empty seats??
+      /*for (byte i = 0; i < numberSeats; i++)
       {
         long temp = -1;
         newTablePlayer("", 0, i, true, ref temp);
-      }
+      }*/
 
       endWrite();
     }
