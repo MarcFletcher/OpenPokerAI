@@ -29,7 +29,12 @@ namespace PokerBot.BotGame
     public BotGame()
     {
       //By default set the database offline
-      databaseQueries.SetDatabaseLocalMode(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Resources\\ManualPlayersTable.csv"));
+      databaseQueries.SetDatabaseLocalMode(
+        Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Resources\\ManualPlayersTable.csv"));
+
+      Environment.SetEnvironmentVariable("PlayerNetworkStoreDir",
+        Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Resources\\PlayerNetworkStore"));
+
       Environment.SetEnvironmentVariable("HoleCardUsageDir", "D:\\PokerBot\\HoleCardUsageDat");
       Environment.SetEnvironmentVariable("PlayerActionPredictionDir", "D:\\PokerBot\\LocalFBPStore\\PlayerActionPrediction");
       Environment.SetEnvironmentVariable("HandRanksFile", "D:\\PokerBot\\HandRanksFile\\HandRanks.dat");
@@ -47,8 +52,6 @@ namespace PokerBot.BotGame
       Environment.SetEnvironmentVariable("riverLocationsFile", "D:\\PokerBot\\WPLookupTables\\Locations\\riverLocations.dat");
 
       Environment.SetEnvironmentVariable("WeightedWinRatioDir", "D:\\PokerBot\\WeightedWinRatioDat");
-
-      Environment.SetEnvironmentVariable("FBPNetworkStoreDir", "D:\\PokerBot\\LocalFBPStore");
 
       InitializeComponent();
     }

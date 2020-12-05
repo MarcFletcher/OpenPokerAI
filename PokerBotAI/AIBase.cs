@@ -28,7 +28,7 @@ namespace PokerBot.AI
 
     protected object locker = new object();
 
-    protected static string AI_FILES_STORE = Environment.GetEnvironmentVariable("FBPNetworkStoreDir");
+    protected static string AI_FILES_STORE = Environment.GetEnvironmentVariable("PlayerNetworkStoreDir");
 
     public static AIGeneration AiType
     {

@@ -9,3 +9,4 @@ The following tasks have been spotted during the project migration as benefiting
 - Removing the Encog project and replacing it with a NuGet dependency (see FBPChanges.txt).  
 - Re-add support for training player action prediction (PAP) models.
 - Auto generate documentation using something like DocFX?
+- If playing a PokerGame locally and a player busts out the game currently crashes.
