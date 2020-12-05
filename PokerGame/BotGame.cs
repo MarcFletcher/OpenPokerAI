@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Forms;
 using PokerBot.Definitions;
 using PokerBot.Database;
-using PokerBot.AI;
 using System.IO;
 
 // We want to create 10 new players with random WR limits (between 0 and 5)
@@ -46,6 +45,10 @@ namespace PokerBot.BotGame
       Environment.SetEnvironmentVariable("flopLocationsFile", "D:\\PokerBot\\WPLookupTables\\Locations\\flopLocations.dat");
       Environment.SetEnvironmentVariable("turnLocationsFile", "D:\\PokerBot\\WPLookupTables\\Locations\\turnLocations.dat");
       Environment.SetEnvironmentVariable("riverLocationsFile", "D:\\PokerBot\\WPLookupTables\\Locations\\riverLocations.dat");
+
+      Environment.SetEnvironmentVariable("WeightedWinRatioDir", "D:\\PokerBot\\WeightedWinRatioDat");
+
+      Environment.SetEnvironmentVariable("FBPNetworkStoreDir", "D:\\PokerBot\\LocalFBPStore");
 
       InitializeComponent();
     }

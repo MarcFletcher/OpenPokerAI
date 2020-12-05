@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using PokerBot.Database;
 using System.IO;
 using Encog;
-using Encog.Neural.Networks;
-using Encog.Util;
 
 namespace PokerBot.AI.Neural.Version7
 {

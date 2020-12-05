@@ -1,13 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Encog.Neural.Networks;
-using Encog.Util;
 using Encog;
-using System.IO;
+using Encog.Neural.Networks;
 using PokerBot.Definitions;
-using PokerBot.AI.InfoProviders;
 
 namespace PokerBot.AI.Neural
 {
@@ -312,7 +308,7 @@ namespace PokerBot.AI.Neural
       }
       catch (Exception ex)
       {
-        throw new Exception("aiConfigStr was not formatted correctly for the current AI type. " + ex.ToString());
+        throw new Exception("aiConfigStr was not formatted correctly for the current AI type.", ex);
       }
     }
   }

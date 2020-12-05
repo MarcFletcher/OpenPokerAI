@@ -13,7 +13,7 @@ namespace PokerBot.AI.ProviderWinRatio
 
       #region File location Params
 
-      static string fileDir;
+      static string fileDir = Environment.GetEnvironmentVariable("WeightedWinRatioDir");
 
       public const string unraisedPreflopFoldFN = "Preflop\\_fittedUnraisedPreflopFold.csv";
       public const string unraisedPreflopCallFN = "Preflop\\_fittedUnraisedPreflopCall.csv";
@@ -190,8 +190,6 @@ namespace PokerBot.AI.ProviderWinRatio
             {
               if (CurrentJob == null)
               {
-                fileDir = Environment.GetEnvironmentVariable("WinRatioPlayerModelsDir");
-
                 LoadData(Path.Combine(fileDir, unraisedPreflopFoldFN), out unraisedPreflopFold, false);
                 LoadData(Path.Combine(fileDir, unraisedPreflopCallFN), out unraisedPreflopCall, false);
                 LoadData(Path.Combine(fileDir, unraisedPreflopRaiseFN), out unraisedPreflopRaise, false);
@@ -239,6 +237,11 @@ namespace PokerBot.AI.ProviderWinRatio
 
         private static void LoadData(string fileName, out double[] data, bool fromJob)
         {
+          if (!File.Exists(fileName))
+          {
+            throw new ArgumentException("Provided data does not exist " + fileName);
+          }
+
           string[] lines = fromJob ? null : File.ReadAllLines(fileName);
 
           if (lines.Length != 101)

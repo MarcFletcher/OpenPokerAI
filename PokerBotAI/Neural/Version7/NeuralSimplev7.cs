@@ -1,14 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PokerBot.Definitions;
-using PokerBot.AI.InfoProviders;
-using System.Windows.Forms;
 using System.Diagnostics;
-using PokerBot.AI.Neural;
+using System.Linq;
 using Encog;
-using ProviderAggression;
+using PokerBot.AI.InfoProviders;
+using PokerBot.Definitions;
 
 namespace PokerBot.AI.Neural.Version7
 {

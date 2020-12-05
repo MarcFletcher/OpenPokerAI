@@ -97,9 +97,9 @@ namespace PokerBot.AI
         else
           throw new Exception("Why is there more than one entry for this aiConfigStr?");
       }
-      catch
+      catch (Exception ex)
       {
-        throw new Exception("aiConfigStr was not formatted correctly for the current AI type.");
+        throw new Exception("aiConfigStr was not formatted correctly for the current AI type.", ex);
       }
 
       return playWR;
@@ -133,9 +133,9 @@ namespace PokerBot.AI
         else
           throw new Exception("Why is there more than one entry for this aiConfigStr?");
       }
-      catch
+      catch (Exception ex)
       {
-        throw new Exception("aiConfigStr was not formatted correctly for the current AI type.");
+        throw new Exception("aiConfigStr was not formatted correctly for the current AI type.", ex);
       }
 
       return raiseWR;
