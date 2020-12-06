@@ -94,13 +94,30 @@ namespace PokerBot.BotGame
 
     public void SetupNeuralTraining()
     {
-      neuralTrainingOutputFields.AddRange(new List<Control> {aiSuggestion, winPercentage, raiseRatio,potRatio,raisedLastRound,calledLastRound,impliedPotOdds,immPotOdds,lastActionRaise, lastRoundBetsToCall, playerMoneyInPot, raiseToCheck,
-                                                    raiseToCall,foldToCall,raiseToStealSuccess,raiseToCallAmount,raiseToStealAmount, currentPlayerId, weightedWR});
+      databaseCache.InitialiseRAMDatabase();
+
+      neuralTrainingOutputFields.AddRange(new List<Control> {aiSuggestion, aiData,
+        raiseToCallAmount, raiseToStealAmount, currentPlayerId });
 
       neuralPlayerActionLog.AddRange(new List<Control> { player1NoLog, player2NoLog, player3NoLog, player4NoLog,
                                 player5NoLog,player6NoLog,player7NoLog,player8NoLog,player9NoLog});
 
-      neuralPlayerNames.AddRange(new List<string> { "Neural1", "Neural2", "Neural3", "Neural4", "Neural5", "Neural6", "Neural7", "Neural8", "Neural9" });
+
+      //Create the AISelection[]
+      List<AISelection> aiSelection = new List<AISelection>();
+      for (int i = 0; i < 9; i++)
+      {
+        aiSelection.Add(new AISelection(AIGeneration.NeuralV4, "FixedNeuralPlayers\\neuralV4_Marc.eNN"));
+      }
+
+      long[] newPlayerIds = PokerHelper.CreateOpponentPlayers(aiSelection.ToArray(), false, 1);
+      string[] selectedPlayerNames = new string[newPlayerIds.Length];
+      for (int i = 0; i < newPlayerIds.Length; i++)
+      {
+        selectedPlayerNames[i] = databaseQueries.convertToPlayerNameFromId(newPlayerIds[i]);
+      }
+
+      neuralPlayerNames.AddRange(selectedPlayerNames);
     }
 
     /// <summary>
@@ -113,6 +130,7 @@ namespace PokerBot.BotGame
       if (startNeuralTraining.Text == "Start Game")
       {
         SetupNeuralTraining();
+
         clientCache = new databaseCacheClient(short.Parse(clientId.Text), this.gameName.Text, decimal.Parse(this.littleBlind.Text), decimal.Parse(this.bigBlind.Text), decimal.Parse(this.startingStack.Text), 9, HandDataSource.NeuralTraining);
         pokerGame = new ManualNeuralTrainingPokerGame(PokerGameType.ManualNeuralTraining, clientCache, 0, neuralPlayerNames.ToArray(), Decimal.Parse(startingStack.Text), 0, 0, neuralTrainingOutputFields, neuralPlayerActionLog);
         pokerGame.startGameTask();

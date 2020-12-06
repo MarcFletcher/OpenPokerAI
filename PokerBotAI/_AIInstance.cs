@@ -353,7 +353,7 @@ namespace PokerBot.AI
           provider.Close();
       }
 
-      public InfoPiece[] GetInfoStoreValues()
+      public Dictionary<InfoType, InfoPiece> GetInfoStoreValues()
       {
         return infoStore.GetInformationStore();
       }

@@ -115,8 +115,8 @@ namespace PokerBot.AI.InfoProviders
         int numRequiredInfoTypes = requiredInfoTypes.Count;
 
         int requiredInfoTypesPresent = (from
-                                    availableInformation in infoStore.GetInformationStore()
-                                        join requiredTypes in requiredInfoTypes on availableInformation.InformationType equals requiredTypes
+                                    availableInformation in infoStore.GetInformationStore().Keys
+                                        join requiredTypes in requiredInfoTypes on availableInformation equals requiredTypes
                                         select infoStore).Count();
 
         if (numRequiredInfoTypes != requiredInfoTypesPresent)

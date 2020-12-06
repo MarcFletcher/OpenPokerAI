@@ -31,7 +31,6 @@
       this.gameModes = new System.Windows.Forms.TabControl();
       this.botVHuman = new System.Windows.Forms.TabPage();
       this.showAllCards = new System.Windows.Forms.CheckBox();
-      this.aiSelectionControl1 = new PokerBot.BotGame.AISelectionControl();
       this.label16 = new System.Windows.Forms.Label();
       this.actionPause = new System.Windows.Forms.TextBox();
       this.playPoker = new System.Windows.Forms.Button();
@@ -50,12 +49,6 @@
       this.clientId = new System.Windows.Forms.TextBox();
       this.viewNerualTrainingTable = new System.Windows.Forms.Button();
       this.currentPlayerId = new System.Windows.Forms.TextBox();
-      this.label31 = new System.Windows.Forms.Label();
-      this.lastActionRaise = new System.Windows.Forms.TextBox();
-      this.label30 = new System.Windows.Forms.Label();
-      this.label29 = new System.Windows.Forms.Label();
-      this.lastRoundBetsToCall = new System.Windows.Forms.TextBox();
-      this.playerMoneyInPot = new System.Windows.Forms.TextBox();
       this.player9NoLog = new System.Windows.Forms.CheckBox();
       this.player8NoLog = new System.Windows.Forms.CheckBox();
       this.player7NoLog = new System.Windows.Forms.CheckBox();
@@ -66,31 +59,8 @@
       this.player2NoLog = new System.Windows.Forms.CheckBox();
       this.player1NoLog = new System.Windows.Forms.CheckBox();
       this.startNeuralTraining = new System.Windows.Forms.Button();
-      this.raiseToCheck = new System.Windows.Forms.TextBox();
-      this.raiseToCall = new System.Windows.Forms.TextBox();
-      this.foldToCall = new System.Windows.Forms.TextBox();
-      this.winPercentage = new System.Windows.Forms.TextBox();
-      this.raiseToStealSuccess = new System.Windows.Forms.TextBox();
-      this.raiseRatio = new System.Windows.Forms.TextBox();
-      this.potRatio = new System.Windows.Forms.TextBox();
-      this.immPotOdds = new System.Windows.Forms.TextBox();
-      this.impliedPotOdds = new System.Windows.Forms.TextBox();
-      this.calledLastRound = new System.Windows.Forms.TextBox();
-      this.raisedLastRound = new System.Windows.Forms.TextBox();
-      this.label28 = new System.Windows.Forms.Label();
-      this.label27 = new System.Windows.Forms.Label();
-      this.label26 = new System.Windows.Forms.Label();
-      this.label25 = new System.Windows.Forms.Label();
-      this.label24 = new System.Windows.Forms.Label();
-      this.label23 = new System.Windows.Forms.Label();
-      this.label22 = new System.Windows.Forms.Label();
-      this.label21 = new System.Windows.Forms.Label();
-      this.label20 = new System.Windows.Forms.Label();
-      this.label19 = new System.Windows.Forms.Label();
-      this.label18 = new System.Windows.Forms.Label();
       this.panel1 = new System.Windows.Forms.Panel();
-      this.label32 = new System.Windows.Forms.Label();
-      this.weightedWR = new System.Windows.Forms.TextBox();
+      this.aiData = new System.Windows.Forms.TextBox();
       this.label14 = new System.Windows.Forms.Label();
       this.startingStack = new System.Windows.Forms.TextBox();
       this.label12 = new System.Windows.Forms.Label();
@@ -99,6 +69,8 @@
       this.littleBlind = new System.Windows.Forms.TextBox();
       this.label11 = new System.Windows.Forms.Label();
       this.gameName = new System.Windows.Forms.TextBox();
+      this.label1 = new System.Windows.Forms.Label();
+      this.aiSelectionControl1 = new PokerBot.BotGame.AISelectionControl();
       this.gameModes.SuspendLayout();
       this.botVHuman.SuspendLayout();
       this.nerualTraining.SuspendLayout();
@@ -141,14 +113,6 @@
       this.showAllCards.TabIndex = 53;
       this.showAllCards.Text = "Show All Cards";
       this.showAllCards.UseVisualStyleBackColor = true;
-      // 
-      // aiSelectionControl1
-      // 
-      this.aiSelectionControl1.AutoScroll = true;
-      this.aiSelectionControl1.Location = new System.Drawing.Point(9, 62);
-      this.aiSelectionControl1.Name = "aiSelectionControl1";
-      this.aiSelectionControl1.Size = new System.Drawing.Size(422, 218);
-      this.aiSelectionControl1.TabIndex = 52;
       // 
       // label16
       // 
@@ -198,6 +162,7 @@
       // 
       // nerualTraining
       // 
+      this.nerualTraining.Controls.Add(this.label1);
       this.nerualTraining.Controls.Add(this.allInAction);
       this.nerualTraining.Controls.Add(this.aiSuggestion);
       this.nerualTraining.Controls.Add(this.raiseToStealAmount);
@@ -210,12 +175,6 @@
       this.nerualTraining.Controls.Add(this.clientId);
       this.nerualTraining.Controls.Add(this.viewNerualTrainingTable);
       this.nerualTraining.Controls.Add(this.currentPlayerId);
-      this.nerualTraining.Controls.Add(this.label31);
-      this.nerualTraining.Controls.Add(this.lastActionRaise);
-      this.nerualTraining.Controls.Add(this.label30);
-      this.nerualTraining.Controls.Add(this.label29);
-      this.nerualTraining.Controls.Add(this.lastRoundBetsToCall);
-      this.nerualTraining.Controls.Add(this.playerMoneyInPot);
       this.nerualTraining.Controls.Add(this.player9NoLog);
       this.nerualTraining.Controls.Add(this.player8NoLog);
       this.nerualTraining.Controls.Add(this.player7NoLog);
@@ -226,28 +185,6 @@
       this.nerualTraining.Controls.Add(this.player2NoLog);
       this.nerualTraining.Controls.Add(this.player1NoLog);
       this.nerualTraining.Controls.Add(this.startNeuralTraining);
-      this.nerualTraining.Controls.Add(this.raiseToCheck);
-      this.nerualTraining.Controls.Add(this.raiseToCall);
-      this.nerualTraining.Controls.Add(this.foldToCall);
-      this.nerualTraining.Controls.Add(this.winPercentage);
-      this.nerualTraining.Controls.Add(this.raiseToStealSuccess);
-      this.nerualTraining.Controls.Add(this.raiseRatio);
-      this.nerualTraining.Controls.Add(this.potRatio);
-      this.nerualTraining.Controls.Add(this.immPotOdds);
-      this.nerualTraining.Controls.Add(this.impliedPotOdds);
-      this.nerualTraining.Controls.Add(this.calledLastRound);
-      this.nerualTraining.Controls.Add(this.raisedLastRound);
-      this.nerualTraining.Controls.Add(this.label28);
-      this.nerualTraining.Controls.Add(this.label27);
-      this.nerualTraining.Controls.Add(this.label26);
-      this.nerualTraining.Controls.Add(this.label25);
-      this.nerualTraining.Controls.Add(this.label24);
-      this.nerualTraining.Controls.Add(this.label23);
-      this.nerualTraining.Controls.Add(this.label22);
-      this.nerualTraining.Controls.Add(this.label21);
-      this.nerualTraining.Controls.Add(this.label20);
-      this.nerualTraining.Controls.Add(this.label19);
-      this.nerualTraining.Controls.Add(this.label18);
       this.nerualTraining.Controls.Add(this.panel1);
       this.nerualTraining.Location = new System.Drawing.Point(4, 22);
       this.nerualTraining.Name = "nerualTraining";
@@ -338,7 +275,7 @@
       // 
       this.label33.AutoSize = true;
       this.label33.BackColor = System.Drawing.Color.Transparent;
-      this.label33.Location = new System.Drawing.Point(17, 11);
+      this.label33.Location = new System.Drawing.Point(25, 40);
       this.label33.Name = "label33";
       this.label33.Size = new System.Drawing.Size(48, 13);
       this.label33.TabIndex = 60;
@@ -346,7 +283,7 @@
       // 
       // clientId
       // 
-      this.clientId.Location = new System.Drawing.Point(65, 8);
+      this.clientId.Location = new System.Drawing.Point(73, 37);
       this.clientId.Name = "clientId";
       this.clientId.Size = new System.Drawing.Size(53, 20);
       this.clientId.TabIndex = 59;
@@ -355,7 +292,7 @@
       // viewNerualTrainingTable
       // 
       this.viewNerualTrainingTable.Enabled = false;
-      this.viewNerualTrainingTable.Location = new System.Drawing.Point(124, 6);
+      this.viewNerualTrainingTable.Location = new System.Drawing.Point(132, 35);
       this.viewNerualTrainingTable.Name = "viewNerualTrainingTable";
       this.viewNerualTrainingTable.Size = new System.Drawing.Size(75, 23);
       this.viewNerualTrainingTable.TabIndex = 31;
@@ -365,73 +302,19 @@
       // 
       // currentPlayerId
       // 
-      this.currentPlayerId.Location = new System.Drawing.Point(286, 8);
+      this.currentPlayerId.Location = new System.Drawing.Point(294, 37);
       this.currentPlayerId.Name = "currentPlayerId";
       this.currentPlayerId.Size = new System.Drawing.Size(100, 20);
       this.currentPlayerId.TabIndex = 57;
       this.currentPlayerId.Visible = false;
       this.currentPlayerId.TextChanged += new System.EventHandler(this.currentPlayerId_TextChanged);
       // 
-      // label31
-      // 
-      this.label31.AutoSize = true;
-      this.label31.BackColor = System.Drawing.Color.DarkGray;
-      this.label31.Location = new System.Drawing.Point(186, 121);
-      this.label31.Name = "label31";
-      this.label31.Size = new System.Drawing.Size(102, 13);
-      this.label31.TabIndex = 53;
-      this.label31.Text = "Last Action = Raise:";
-      // 
-      // lastActionRaise
-      // 
-      this.lastActionRaise.Enabled = false;
-      this.lastActionRaise.Location = new System.Drawing.Point(336, 118);
-      this.lastActionRaise.Name = "lastActionRaise";
-      this.lastActionRaise.Size = new System.Drawing.Size(50, 20);
-      this.lastActionRaise.TabIndex = 52;
-      // 
-      // label30
-      // 
-      this.label30.AutoSize = true;
-      this.label30.BackColor = System.Drawing.Color.DarkGray;
-      this.label30.Location = new System.Drawing.Point(186, 165);
-      this.label30.Name = "label30";
-      this.label30.Size = new System.Drawing.Size(105, 13);
-      this.label30.TabIndex = 51;
-      this.label30.Text = "Player Money In Pot:";
-      // 
-      // label29
-      // 
-      this.label29.AutoSize = true;
-      this.label29.BackColor = System.Drawing.Color.DarkGray;
-      this.label29.Location = new System.Drawing.Point(185, 143);
-      this.label29.Name = "label29";
-      this.label29.Size = new System.Drawing.Size(125, 13);
-      this.label29.TabIndex = 50;
-      this.label29.Text = "Last Round Bets To Call:";
-      // 
-      // lastRoundBetsToCall
-      // 
-      this.lastRoundBetsToCall.Enabled = false;
-      this.lastRoundBetsToCall.Location = new System.Drawing.Point(336, 140);
-      this.lastRoundBetsToCall.Name = "lastRoundBetsToCall";
-      this.lastRoundBetsToCall.Size = new System.Drawing.Size(50, 20);
-      this.lastRoundBetsToCall.TabIndex = 49;
-      // 
-      // playerMoneyInPot
-      // 
-      this.playerMoneyInPot.Enabled = false;
-      this.playerMoneyInPot.Location = new System.Drawing.Point(336, 162);
-      this.playerMoneyInPot.Name = "playerMoneyInPot";
-      this.playerMoneyInPot.Size = new System.Drawing.Size(50, 20);
-      this.playerMoneyInPot.TabIndex = 48;
-      // 
       // player9NoLog
       // 
       this.player9NoLog.AutoSize = true;
       this.player9NoLog.Checked = true;
       this.player9NoLog.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.player9NoLog.Location = new System.Drawing.Point(259, 81);
+      this.player9NoLog.Location = new System.Drawing.Point(252, 104);
       this.player9NoLog.Name = "player9NoLog";
       this.player9NoLog.Size = new System.Drawing.Size(116, 17);
       this.player9NoLog.TabIndex = 47;
@@ -443,7 +326,7 @@
       this.player8NoLog.AutoSize = true;
       this.player8NoLog.Checked = true;
       this.player8NoLog.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.player8NoLog.Location = new System.Drawing.Point(259, 63);
+      this.player8NoLog.Location = new System.Drawing.Point(252, 86);
       this.player8NoLog.Name = "player8NoLog";
       this.player8NoLog.Size = new System.Drawing.Size(116, 17);
       this.player8NoLog.TabIndex = 46;
@@ -455,7 +338,7 @@
       this.player7NoLog.AutoSize = true;
       this.player7NoLog.Checked = true;
       this.player7NoLog.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.player7NoLog.Location = new System.Drawing.Point(259, 45);
+      this.player7NoLog.Location = new System.Drawing.Point(252, 68);
       this.player7NoLog.Name = "player7NoLog";
       this.player7NoLog.Size = new System.Drawing.Size(116, 17);
       this.player7NoLog.TabIndex = 45;
@@ -467,7 +350,7 @@
       this.player6NoLog.AutoSize = true;
       this.player6NoLog.Checked = true;
       this.player6NoLog.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.player6NoLog.Location = new System.Drawing.Point(145, 81);
+      this.player6NoLog.Location = new System.Drawing.Point(138, 104);
       this.player6NoLog.Name = "player6NoLog";
       this.player6NoLog.Size = new System.Drawing.Size(116, 17);
       this.player6NoLog.TabIndex = 44;
@@ -479,7 +362,7 @@
       this.player5NoLog.AutoSize = true;
       this.player5NoLog.Checked = true;
       this.player5NoLog.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.player5NoLog.Location = new System.Drawing.Point(145, 63);
+      this.player5NoLog.Location = new System.Drawing.Point(138, 86);
       this.player5NoLog.Name = "player5NoLog";
       this.player5NoLog.Size = new System.Drawing.Size(116, 17);
       this.player5NoLog.TabIndex = 43;
@@ -491,7 +374,7 @@
       this.player4NoLog.AutoSize = true;
       this.player4NoLog.Checked = true;
       this.player4NoLog.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.player4NoLog.Location = new System.Drawing.Point(145, 45);
+      this.player4NoLog.Location = new System.Drawing.Point(138, 68);
       this.player4NoLog.Name = "player4NoLog";
       this.player4NoLog.Size = new System.Drawing.Size(116, 17);
       this.player4NoLog.TabIndex = 42;
@@ -503,7 +386,7 @@
       this.player3NoLog.AutoSize = true;
       this.player3NoLog.Checked = true;
       this.player3NoLog.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.player3NoLog.Location = new System.Drawing.Point(34, 81);
+      this.player3NoLog.Location = new System.Drawing.Point(27, 104);
       this.player3NoLog.Name = "player3NoLog";
       this.player3NoLog.Size = new System.Drawing.Size(116, 17);
       this.player3NoLog.TabIndex = 41;
@@ -515,7 +398,7 @@
       this.player2NoLog.AutoSize = true;
       this.player2NoLog.Checked = true;
       this.player2NoLog.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.player2NoLog.Location = new System.Drawing.Point(34, 63);
+      this.player2NoLog.Location = new System.Drawing.Point(27, 86);
       this.player2NoLog.Name = "player2NoLog";
       this.player2NoLog.Size = new System.Drawing.Size(116, 17);
       this.player2NoLog.TabIndex = 40;
@@ -527,7 +410,7 @@
       this.player1NoLog.AutoSize = true;
       this.player1NoLog.Checked = true;
       this.player1NoLog.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.player1NoLog.Location = new System.Drawing.Point(34, 45);
+      this.player1NoLog.Location = new System.Drawing.Point(27, 68);
       this.player1NoLog.Name = "player1NoLog";
       this.player1NoLog.Size = new System.Drawing.Size(116, 17);
       this.player1NoLog.TabIndex = 39;
@@ -536,7 +419,7 @@
       // 
       // startNeuralTraining
       // 
-      this.startNeuralTraining.Location = new System.Drawing.Point(205, 6);
+      this.startNeuralTraining.Location = new System.Drawing.Point(213, 35);
       this.startNeuralTraining.Name = "startNeuralTraining";
       this.startNeuralTraining.Size = new System.Drawing.Size(75, 23);
       this.startNeuralTraining.TabIndex = 38;
@@ -544,231 +427,24 @@
       this.startNeuralTraining.UseVisualStyleBackColor = true;
       this.startNeuralTraining.Click += new System.EventHandler(this.startNeuralTraining_Click);
       // 
-      // raiseToCheck
-      // 
-      this.raiseToCheck.Enabled = false;
-      this.raiseToCheck.Location = new System.Drawing.Point(336, 184);
-      this.raiseToCheck.Name = "raiseToCheck";
-      this.raiseToCheck.Size = new System.Drawing.Size(50, 20);
-      this.raiseToCheck.TabIndex = 37;
-      // 
-      // raiseToCall
-      // 
-      this.raiseToCall.Enabled = false;
-      this.raiseToCall.Location = new System.Drawing.Point(336, 206);
-      this.raiseToCall.Name = "raiseToCall";
-      this.raiseToCall.Size = new System.Drawing.Size(50, 20);
-      this.raiseToCall.TabIndex = 36;
-      // 
-      // foldToCall
-      // 
-      this.foldToCall.Enabled = false;
-      this.foldToCall.Location = new System.Drawing.Point(336, 228);
-      this.foldToCall.Name = "foldToCall";
-      this.foldToCall.Size = new System.Drawing.Size(50, 20);
-      this.foldToCall.TabIndex = 35;
-      // 
-      // winPercentage
-      // 
-      this.winPercentage.Enabled = false;
-      this.winPercentage.Location = new System.Drawing.Point(121, 116);
-      this.winPercentage.Name = "winPercentage";
-      this.winPercentage.Size = new System.Drawing.Size(50, 20);
-      this.winPercentage.TabIndex = 34;
-      // 
-      // raiseToStealSuccess
-      // 
-      this.raiseToStealSuccess.Enabled = false;
-      this.raiseToStealSuccess.Location = new System.Drawing.Point(336, 250);
-      this.raiseToStealSuccess.Name = "raiseToStealSuccess";
-      this.raiseToStealSuccess.Size = new System.Drawing.Size(50, 20);
-      this.raiseToStealSuccess.TabIndex = 33;
-      // 
-      // raiseRatio
-      // 
-      this.raiseRatio.Enabled = false;
-      this.raiseRatio.Location = new System.Drawing.Point(121, 160);
-      this.raiseRatio.Name = "raiseRatio";
-      this.raiseRatio.Size = new System.Drawing.Size(50, 20);
-      this.raiseRatio.TabIndex = 32;
-      // 
-      // potRatio
-      // 
-      this.potRatio.Enabled = false;
-      this.potRatio.Location = new System.Drawing.Point(121, 182);
-      this.potRatio.Name = "potRatio";
-      this.potRatio.Size = new System.Drawing.Size(50, 20);
-      this.potRatio.TabIndex = 31;
-      // 
-      // immPotOdds
-      // 
-      this.immPotOdds.Enabled = false;
-      this.immPotOdds.Location = new System.Drawing.Point(121, 270);
-      this.immPotOdds.Name = "immPotOdds";
-      this.immPotOdds.Size = new System.Drawing.Size(50, 20);
-      this.immPotOdds.TabIndex = 30;
-      // 
-      // impliedPotOdds
-      // 
-      this.impliedPotOdds.Enabled = false;
-      this.impliedPotOdds.Location = new System.Drawing.Point(121, 248);
-      this.impliedPotOdds.Name = "impliedPotOdds";
-      this.impliedPotOdds.Size = new System.Drawing.Size(50, 20);
-      this.impliedPotOdds.TabIndex = 29;
-      // 
-      // calledLastRound
-      // 
-      this.calledLastRound.Enabled = false;
-      this.calledLastRound.Location = new System.Drawing.Point(121, 226);
-      this.calledLastRound.Name = "calledLastRound";
-      this.calledLastRound.Size = new System.Drawing.Size(50, 20);
-      this.calledLastRound.TabIndex = 28;
-      // 
-      // raisedLastRound
-      // 
-      this.raisedLastRound.Enabled = false;
-      this.raisedLastRound.Location = new System.Drawing.Point(121, 204);
-      this.raisedLastRound.Name = "raisedLastRound";
-      this.raisedLastRound.Size = new System.Drawing.Size(50, 20);
-      this.raisedLastRound.TabIndex = 27;
-      // 
-      // label28
-      // 
-      this.label28.AutoSize = true;
-      this.label28.BackColor = System.Drawing.Color.DarkGray;
-      this.label28.Location = new System.Drawing.Point(15, 119);
-      this.label28.Name = "label28";
-      this.label28.Size = new System.Drawing.Size(87, 13);
-      this.label28.TabIndex = 16;
-      this.label28.Text = "Win Percentage:";
-      // 
-      // label27
-      // 
-      this.label27.AutoSize = true;
-      this.label27.BackColor = System.Drawing.Color.DarkGray;
-      this.label27.Location = new System.Drawing.Point(15, 229);
-      this.label27.Name = "label27";
-      this.label27.Size = new System.Drawing.Size(97, 13);
-      this.label27.TabIndex = 15;
-      this.label27.Text = "Called Last Round:";
-      // 
-      // label26
-      // 
-      this.label26.AutoSize = true;
-      this.label26.BackColor = System.Drawing.Color.DarkGray;
-      this.label26.Location = new System.Drawing.Point(15, 185);
-      this.label26.Name = "label26";
-      this.label26.Size = new System.Drawing.Size(54, 13);
-      this.label26.TabIndex = 14;
-      this.label26.Text = "Pot Ratio:";
-      // 
-      // label25
-      // 
-      this.label25.AutoSize = true;
-      this.label25.BackColor = System.Drawing.Color.DarkGray;
-      this.label25.Location = new System.Drawing.Point(15, 273);
-      this.label25.Name = "label25";
-      this.label25.Size = new System.Drawing.Size(76, 13);
-      this.label25.TabIndex = 13;
-      this.label25.Text = "Imm Pot Odds:";
-      // 
-      // label24
-      // 
-      this.label24.AutoSize = true;
-      this.label24.BackColor = System.Drawing.Color.DarkGray;
-      this.label24.Location = new System.Drawing.Point(15, 163);
-      this.label24.Name = "label24";
-      this.label24.Size = new System.Drawing.Size(65, 13);
-      this.label24.TabIndex = 12;
-      this.label24.Text = "Raise Ratio:";
-      // 
-      // label23
-      // 
-      this.label23.AutoSize = true;
-      this.label23.BackColor = System.Drawing.Color.DarkGray;
-      this.label23.Location = new System.Drawing.Point(15, 251);
-      this.label23.Name = "label23";
-      this.label23.Size = new System.Drawing.Size(90, 13);
-      this.label23.TabIndex = 11;
-      this.label23.Text = "Implied Pot Odds:";
-      // 
-      // label22
-      // 
-      this.label22.AutoSize = true;
-      this.label22.BackColor = System.Drawing.Color.DarkGray;
-      this.label22.Location = new System.Drawing.Point(15, 207);
-      this.label22.Name = "label22";
-      this.label22.Size = new System.Drawing.Size(101, 13);
-      this.label22.TabIndex = 10;
-      this.label22.Text = "Raised Last Round:";
-      // 
-      // label21
-      // 
-      this.label21.AutoSize = true;
-      this.label21.BackColor = System.Drawing.Color.DarkGray;
-      this.label21.Location = new System.Drawing.Point(186, 253);
-      this.label21.Name = "label21";
-      this.label21.Size = new System.Drawing.Size(149, 13);
-      this.label21.TabIndex = 9;
-      this.label21.Text = "Prob Raise To Steal Success:";
-      // 
-      // label20
-      // 
-      this.label20.AutoSize = true;
-      this.label20.BackColor = System.Drawing.Color.DarkGray;
-      this.label20.Location = new System.Drawing.Point(186, 231);
-      this.label20.Name = "label20";
-      this.label20.Size = new System.Drawing.Size(110, 13);
-      this.label20.TabIndex = 8;
-      this.label20.Text = "Prob Fold To Bot Call:";
-      // 
-      // label19
-      // 
-      this.label19.AutoSize = true;
-      this.label19.BackColor = System.Drawing.Color.DarkGray;
-      this.label19.Location = new System.Drawing.Point(186, 209);
-      this.label19.Name = "label19";
-      this.label19.Size = new System.Drawing.Size(117, 13);
-      this.label19.TabIndex = 7;
-      this.label19.Text = "Prob Raise To Bot Call:";
-      // 
-      // label18
-      // 
-      this.label18.AutoSize = true;
-      this.label18.BackColor = System.Drawing.Color.DarkGray;
-      this.label18.Location = new System.Drawing.Point(186, 187);
-      this.label18.Name = "label18";
-      this.label18.Size = new System.Drawing.Size(131, 13);
-      this.label18.TabIndex = 6;
-      this.label18.Text = "Prob Raise To Bot Check:";
-      // 
       // panel1
       // 
       this.panel1.BackColor = System.Drawing.Color.DarkGray;
-      this.panel1.Controls.Add(this.label32);
-      this.panel1.Controls.Add(this.weightedWR);
-      this.panel1.Location = new System.Drawing.Point(6, 104);
+      this.panel1.Controls.Add(this.aiData);
+      this.panel1.Location = new System.Drawing.Point(6, 128);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(389, 205);
+      this.panel1.Size = new System.Drawing.Size(425, 182);
       this.panel1.TabIndex = 56;
       // 
-      // label32
+      // aiData
       // 
-      this.label32.AutoSize = true;
-      this.label32.BackColor = System.Drawing.Color.DarkGray;
-      this.label32.Location = new System.Drawing.Point(9, 36);
-      this.label32.Name = "label32";
-      this.label32.Size = new System.Drawing.Size(89, 13);
-      this.label32.TabIndex = 59;
-      this.label32.Text = "Weighted Win %:";
-      // 
-      // weightedWR
-      // 
-      this.weightedWR.Enabled = false;
-      this.weightedWR.Location = new System.Drawing.Point(115, 34);
-      this.weightedWR.Name = "weightedWR";
-      this.weightedWR.Size = new System.Drawing.Size(50, 20);
-      this.weightedWR.TabIndex = 59;
+      this.aiData.Location = new System.Drawing.Point(3, 3);
+      this.aiData.Multiline = true;
+      this.aiData.Name = "aiData";
+      this.aiData.ReadOnly = true;
+      this.aiData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+      this.aiData.Size = new System.Drawing.Size(419, 175);
+      this.aiData.TabIndex = 34;
       // 
       // label14
       // 
@@ -838,6 +514,24 @@
       this.gameName.TabIndex = 21;
       this.gameName.Text = "Bot Game";
       // 
+      // label1
+      // 
+      this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label1.Location = new System.Drawing.Point(3, 3);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(428, 31);
+      this.label1.TabIndex = 61;
+      this.label1.Text = "Training environment for recording training inputs and ideal actions. Not fully f" +
+    "unctional right now.";
+      // 
+      // aiSelectionControl1
+      // 
+      this.aiSelectionControl1.AutoScroll = true;
+      this.aiSelectionControl1.Location = new System.Drawing.Point(9, 62);
+      this.aiSelectionControl1.Name = "aiSelectionControl1";
+      this.aiSelectionControl1.Size = new System.Drawing.Size(422, 218);
+      this.aiSelectionControl1.TabIndex = 52;
+      // 
       // BotGame
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -887,24 +581,7 @@
     private System.Windows.Forms.Button callAction;
     private System.Windows.Forms.TextBox raiseToStealAmount;
     private System.Windows.Forms.TextBox raiseToCallAmount;
-    private System.Windows.Forms.Label label21;
-    private System.Windows.Forms.Label label20;
-    private System.Windows.Forms.Label label19;
-    private System.Windows.Forms.Label label18;
-    private System.Windows.Forms.Label label22;
-    private System.Windows.Forms.Label label25;
-    private System.Windows.Forms.Label label24;
-    private System.Windows.Forms.Label label26;
-    private System.Windows.Forms.Label label28;
-    private System.Windows.Forms.TextBox raisedLastRound;
-    private System.Windows.Forms.TextBox raiseToCheck;
-    private System.Windows.Forms.TextBox raiseToCall;
-    private System.Windows.Forms.TextBox foldToCall;
-    private System.Windows.Forms.TextBox winPercentage;
-    private System.Windows.Forms.TextBox raiseToStealSuccess;
-    private System.Windows.Forms.TextBox raiseRatio;
-    private System.Windows.Forms.TextBox potRatio;
-    private System.Windows.Forms.TextBox immPotOdds;
+    private System.Windows.Forms.TextBox aiData;
     private System.Windows.Forms.Button startNeuralTraining;
     private System.Windows.Forms.CheckBox player9NoLog;
     private System.Windows.Forms.CheckBox player8NoLog;
@@ -915,23 +592,10 @@
     private System.Windows.Forms.CheckBox player3NoLog;
     private System.Windows.Forms.CheckBox player2NoLog;
     private System.Windows.Forms.CheckBox player1NoLog;
-    private System.Windows.Forms.Label label30;
-    private System.Windows.Forms.Label label29;
-    private System.Windows.Forms.TextBox lastRoundBetsToCall;
-    private System.Windows.Forms.TextBox playerMoneyInPot;
-    private System.Windows.Forms.Label label31;
-    private System.Windows.Forms.TextBox lastActionRaise;
-    private System.Windows.Forms.TextBox impliedPotOdds;
-    private System.Windows.Forms.TextBox calledLastRound;
-    private System.Windows.Forms.Label label27;
-    private System.Windows.Forms.Label label23;
     private System.Windows.Forms.TextBox aiSuggestion;
-    private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.TextBox currentPlayerId;
     private System.Windows.Forms.Button viewNerualTrainingTable;
     private System.Windows.Forms.Button allInAction;
-    private System.Windows.Forms.Label label32;
-    private System.Windows.Forms.TextBox weightedWR;
     private System.Windows.Forms.TextBox clientId;
     private System.Windows.Forms.Label label33;
     private System.Windows.Forms.CheckBox obfuscateBots;
@@ -940,5 +604,7 @@
     private System.Windows.Forms.TextBox actionPause;
     private AISelectionControl aiSelectionControl1;
     private System.Windows.Forms.CheckBox showAllCards;
+    private System.Windows.Forms.Panel panel1;
+    private System.Windows.Forms.Label label1;
   }
 }

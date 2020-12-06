@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PokerBot.AI.InfoProviders
 {
@@ -100,18 +101,12 @@ namespace PokerBot.AI.InfoProviders
     /// Returns a new array containing all infostore pieces which are marked as updated.
     /// </summary>
     /// <returns></returns>
-    public InfoPiece[] GetInformationStore()
+    public Dictionary<InfoType, InfoPiece> GetInformationStore()
     {
       if (!infoListHardLocked)
         throw new Exception("You are only allowed to get the info store once the list has been hardlocked.");
 
-      List<InfoPiece> result = new List<InfoPiece>();
-
-      foreach (InfoPiece piece in infoList.Values)
-        if (piece.Updated)
-          result.Add(new InfoPiece(piece.InformationType, piece.Value, piece.DefaultValue, true));
-
-      return result.ToArray();
+      return infoList.Where(e => e.Value.Updated).ToDictionary(e => e.Key, e => e.Value);
     }
 
     public void SetAllInformationValuesToDefault()

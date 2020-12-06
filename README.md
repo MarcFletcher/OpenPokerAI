@@ -20,6 +20,8 @@ Back then the field of ML was orders of magnitude less sophisticated than it is 
 
 TBC - Once enough code has been pushed to make this project playable 'getting started' information will be added here. Right now we're still trying to pull the good stuff out from the many weeds.
 
+Note: If things don't appear to be working check for error log files in your execution environment.
+
 ## Getting in touch
 
 **[GitHub Issues](https://github.com/MarcFletcher/OpenPokerAI/issues/new)**: If you have ideas, bugs, 

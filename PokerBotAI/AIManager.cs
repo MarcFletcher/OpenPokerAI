@@ -1,21 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using PokerBot.Definitions;
-using PokerBot.Database;
-using System.Diagnostics;
-using System.Windows.Forms;
-using PokerBot.AI.InfoProviders;
-using PokerBot.AI.ProviderPAP;
-using System.Threading;
-using PokerBot.AI.Nerual.Version1;
-using PokerBot.AI.Nerual.Version2;
-using PokerBot.AI.Nerual.Version3;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using PokerBot.AI.InfoProviders;
 using PokerBot.AI.Neural;
+using PokerBot.AI.ProviderPAP;
+using PokerBot.Database;
+using PokerBot.Definitions;
 
 namespace PokerBot.AI
 {
@@ -233,7 +224,7 @@ namespace PokerBot.AI
       return selectedInstanceIndex;
     }
 
-    public InfoPiece[] GetInfoStoreValues()
+    public Dictionary<InfoType, InfoPiece> GetInfoStoreValues()
     {
       if (aiInstanceList.Count != 1)
         throw new Exception("This method can only be used if there is a single aiInstance.");

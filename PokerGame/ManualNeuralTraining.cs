@@ -17,7 +17,6 @@ namespace PokerBot.BotGame
     byte raiseType;
     protected long lastPlayerActionId;
 
-    protected InfoCollection AIInfoStore;
     List<Control> neuralTrainingOutputFields;
     List<Control> neuralPlayerActionLog;
 
@@ -48,7 +47,8 @@ namespace PokerBot.BotGame
       bool isBotPlayer;
       string aiLogDecisionAppendStr;
 
-      neuralTrainingOutputFields.ElementAt(16).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(17), "" });
+      neuralTrainingOutputFields.ElementAt(4).Invoke(
+        new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(4), "" });
       aiLogDecisionAppendStr = "";
 
       isBotPlayer = clientCache.getPlayerDetails(clientCache.getPlayerId(currentActionPosition)).isBot;
@@ -60,8 +60,9 @@ namespace PokerBot.BotGame
       playerDecision = aiManager.GetDecision(clientCache.getPlayerId(currentActionPosition), clientCache);
       String endTime = (DateTime.Now - startTime).TotalSeconds.ToString();
 
-      neuralTrainingOutputFields.ElementAt(0).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(0), playerDecision.ToString() });
-      //AIInfoStore = aiManager.GetPrimaryInfoStore;
+      neuralTrainingOutputFields.ElementAt(0).Invoke(
+        new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(0),
+          playerDecision.ToString() });
 
       //Update all of the winform values
       updateNerualOutputFields(clientCache.getPlayerId(currentActionPosition));
@@ -112,12 +113,14 @@ namespace PokerBot.BotGame
     public void updateNerualOutputFields(long playerId)
     {
 
+      Dictionary<InfoType, InfoPiece> aiInfo = aiManager.GetInfoStoreValues();
+
       decimal raiseRatio = 0;
-      decimal totalPotAmount = AIInfoStore.GetInfoValue(InfoType.BP_TotalPotAmount_Decimal);
-      decimal potRatio = AIInfoStore.GetInfoValue(InfoType.BP_PlayerMoneyInPot_Decimal) / totalPotAmount; // Own Money In Pot / Total Amount In Pot
+      decimal totalPotAmount = aiInfo[InfoType.BP_TotalPotAmount_Decimal].Value;
+      decimal potRatio = aiInfo[InfoType.BP_PlayerMoneyInPot_Decimal].Value / totalPotAmount; // Own Money In Pot / Total Amount In Pot
 
       decimal immPotOdds = 1;
-      decimal minCallAmount = AIInfoStore.GetInfoValue(InfoType.BP_MinimumPlayAmount_Decimal);
+      decimal minCallAmount = aiInfo[InfoType.BP_MinimumPlayAmount_Decimal].Value;
 
       if (minCallAmount > 0)
       {
@@ -131,36 +134,36 @@ namespace PokerBot.BotGame
           immPotOdds = 0;
       }
 
-      decimal totalNumRaises = AIInfoStore.GetInfoValue(InfoType.BP_TotalNumRaises_Byte);
-      decimal totalNumCalls = AIInfoStore.GetInfoValue(InfoType.BP_TotalNumCalls_Byte);
+      decimal totalNumRaises = aiInfo[InfoType.BP_TotalNumRaises_Byte].Value;
+      decimal totalNumCalls = aiInfo[InfoType.BP_TotalNumCalls_Byte].Value;
       decimal lastActionRaise = 0;
 
       if (totalNumRaises + totalNumCalls > 0)
         raiseRatio = totalNumRaises / (totalNumRaises + totalNumCalls);
 
-      PokerAction lastPlayerAction = (PokerAction)AIInfoStore.GetInfoValue(InfoType.BP_PlayerLastAction_Short);
+      PokerAction lastPlayerAction = (PokerAction)aiInfo[InfoType.BP_PlayerLastAction_Short].Value;
 
       if (lastPlayerAction == PokerAction.Raise)
         lastActionRaise = 1;
 
-      neuralTrainingOutputFields.ElementAt(1).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(1), AIInfoStore.GetInfoValue(InfoType.WR_CardsOnlyWinPercentage).ToString() });
-      neuralTrainingOutputFields.ElementAt(2).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(2), raiseRatio.ToString() });
-      neuralTrainingOutputFields.ElementAt(3).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(3), potRatio.ToString() });
-      neuralTrainingOutputFields.ElementAt(4).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(4), AIInfoStore.GetInfoValue(InfoType.BP_RaisedLastRound_Bool).ToString() });
-      neuralTrainingOutputFields.ElementAt(5).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(5), AIInfoStore.GetInfoValue(InfoType.BP_CalledLastRound_Bool).ToString() });
-      neuralTrainingOutputFields.ElementAt(6).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(6), AIInfoStore.GetInfoValue(InfoType.IO_ImpliedPotOdds_Double).ToString() });
-      neuralTrainingOutputFields.ElementAt(7).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(7), immPotOdds.ToString() });
-      neuralTrainingOutputFields.ElementAt(8).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(8), lastActionRaise.ToString() });
-      neuralTrainingOutputFields.ElementAt(9).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(9), AIInfoStore.GetInfoValue(InfoType.BP_LastRoundBetsToCall_Byte).ToString() });
-      neuralTrainingOutputFields.ElementAt(10).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(10), AIInfoStore.GetInfoValue(InfoType.BP_PlayerMoneyInPot_Decimal).ToString() });
-      neuralTrainingOutputFields.ElementAt(11).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(11), AIInfoStore.GetInfoValue(InfoType.PAP_RaiseToBotCheck_Prob).ToString() });
-      neuralTrainingOutputFields.ElementAt(12).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(12), AIInfoStore.GetInfoValue(InfoType.PAP_RaiseToBotCall_Prob).ToString() });
-      neuralTrainingOutputFields.ElementAt(13).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(13), AIInfoStore.GetInfoValue(InfoType.PAP_FoldToBotCall_Prob).ToString() });
-      neuralTrainingOutputFields.ElementAt(14).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(14), AIInfoStore.GetInfoValue(InfoType.PAP_RaiseToStealSuccess_Prob).ToString() });
-      neuralTrainingOutputFields.ElementAt(15).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(15), AIInfoStore.GetInfoValue(InfoType.PAP_RaiseToCallAmount_Amount).ToString() });
-      neuralTrainingOutputFields.ElementAt(16).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(16), AIInfoStore.GetInfoValue(InfoType.PAP_RaiseToStealAmount_Amount).ToString() });
-      neuralTrainingOutputFields.ElementAt(17).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(17), playerId.ToString() });
-      neuralTrainingOutputFields.ElementAt(18).Invoke(new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(18), AIInfoStore.GetInfoValue(InfoType.WR_CardsOnlyWeightedPercentage).ToString() });
+      String allAIData = String.Join(Environment.NewLine,
+        aiInfo.OrderBy(e => e.Key)
+        .Select(e => e.Key.ToString() + "=" + e.Value.Value.ToString()));
+
+      neuralTrainingOutputFields.ElementAt(1).Invoke(
+        new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(1), allAIData });
+
+      neuralTrainingOutputFields.ElementAt(2).Invoke(
+        new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(2),
+          aiInfo[InfoType.PAP_RaiseToCallAmount_Amount].Value.ToString() });
+
+      neuralTrainingOutputFields.ElementAt(3).Invoke(
+        new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(3),
+          aiInfo[InfoType.PAP_RaiseToStealAmount_Amount].Value.ToString() });
+
+      neuralTrainingOutputFields.ElementAt(4).Invoke(
+        new updateGUI(updateGUIControl), new object[] { neuralTrainingOutputFields.ElementAt(4),
+          playerId.ToString() });
     }
 
   }

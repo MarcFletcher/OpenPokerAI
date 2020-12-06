@@ -10,3 +10,4 @@ The following tasks have been spotted during the project migration as benefiting
 - Re-add support for training player action prediction (PAP) models.
 - Auto generate documentation using something like DocFX?
 - If playing a PokerGame locally and a player busts out the game currently crashes.
+- Remove partial classes and nested classes to help clarify structure.
