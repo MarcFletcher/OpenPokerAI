@@ -9,8 +9,8 @@ PlayerId,Name,PokerClient,AIGeneration,AIConfigStr
 8,NeuralV4,1,NeuralV4,FixedNeuralPlayers\neuralV4_Bob.eNN|FixedNeuralPlayers\neuralV4_Ailwyn.eNN|FixedNeuralPlayers\neuralV4_Marc.eNN|FixedNeuralPlayers\neuralV4_Aztec.eNN|FixedNeuralPlayers\neuralV4_Mixtec.eNN|FixedNeuralPlayers\neuralV4_Barra.eNN|FixedNeuralPlayers\neuralV4_Olmec.eNN|FixedNeuralPlayers\neuralV4_Moche.eNN|FixedNeuralPlayers\neuralV4_Chavin.eNN|FixedNeuralPlayers\neuralV4_Teo.eNN
 9,SimpleV5,1,SimpleV5,NA
 10,SimpleV6,1,SimpleV6,NA
-11,NeuralV5,1,NeuralV5,FixedNeuralPlayers\neuralV5_Ailwyn.eNN|FixedNeuralPlayers\neuralV5_Bob.eNN|FixedNeuralPlayers\neuralV5_Inca.eNN
-12,NeuralV6,1,NeuralV6,FixedNeuralPlayers\neuralV6_Ailwyn.eNN|FixedNeuralPlayers\neuralV6_Bob.eNN|FixedNeuralPlayers\neuralV6_Akkad.eNN|FixedNeuralPlayers\neuralV6_Icarus.eNN
+11,NeuralV5,1,NeuralV5,FixedNeuralPlayers\neuralV5_Inca.eNN|FixedNeuralPlayers\neuralV5_Ailwyn.eNN|FixedNeuralPlayers\neuralV5_Bob.eNN
+12,NeuralV6,1,NeuralV6,FixedNeuralPlayers\neuralV6_Utgard.eNN|FixedNeuralPlayers\neuralV6_Ailwyn.eNN|FixedNeuralPlayers\neuralV6_Bob.eNN|FixedNeuralPlayers\neuralV6_Akkad.eNN|FixedNeuralPlayers\neuralV6_Icarus.eNN
 13,SimpleV7,1,SimpleV7,NA
 14,CheatV1,1,CheatV1,NA
-15,NeuralV7,1,NeuralV7,FixedNeuralPlayers\neuralV7_Vanaheim.eNN|FixedNeuralPlayers\neuralV7_Ailwyn.eNN|FixedNeuralPlayers\neuralV7_Bob.eNN
+15,NeuralV7,1,NeuralV7,FixedNeuralPlayers\neuralV7_Vanaheim.eNN|FixedNeuralPlayers\neuralV7_Valhalla.eNN|FixedNeuralPlayers\neuralV7_Ailwyn.eNN|FixedNeuralPlayers\neuralV7_Bob.eNN

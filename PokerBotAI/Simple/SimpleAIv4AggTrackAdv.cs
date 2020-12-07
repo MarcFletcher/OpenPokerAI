@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using PokerBot.Definitions;
 using PokerBot.AI.InfoProviders;
-using System.Diagnostics;
 using ProviderAggression;
 
 namespace PokerBot.AI
