@@ -16,8 +16,8 @@ namespace PokerBot.Definitions
     NoAi_Human,
 
     /// <summary>
-    /// A very simple parameterisable AI that plays more
-    /// aggressively the better it's hand.
+    /// A very simple tight, parameterisable AI, that plays more
+    /// aggressively the better it's hand. Kind of an obvious opponent.
     /// </summary>
     SimpleV1,
 
