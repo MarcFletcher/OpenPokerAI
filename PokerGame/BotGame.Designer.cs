@@ -31,12 +31,14 @@
       this.gameModes = new System.Windows.Forms.TabControl();
       this.botVHuman = new System.Windows.Forms.TabPage();
       this.showAllCards = new System.Windows.Forms.CheckBox();
+      this.aiSelectionControl1 = new PokerBot.BotGame.AISelectionControl();
       this.label16 = new System.Windows.Forms.Label();
       this.actionPause = new System.Windows.Forms.TextBox();
       this.playPoker = new System.Windows.Forms.Button();
       this.obfuscateBots = new System.Windows.Forms.CheckBox();
       this.label17 = new System.Windows.Forms.Label();
       this.nerualTraining = new System.Windows.Forms.TabPage();
+      this.label1 = new System.Windows.Forms.Label();
       this.allInAction = new System.Windows.Forms.Button();
       this.aiSuggestion = new System.Windows.Forms.TextBox();
       this.raiseToStealAmount = new System.Windows.Forms.TextBox();
@@ -69,8 +71,6 @@
       this.littleBlind = new System.Windows.Forms.TextBox();
       this.label11 = new System.Windows.Forms.Label();
       this.gameName = new System.Windows.Forms.TextBox();
-      this.label1 = new System.Windows.Forms.Label();
-      this.aiSelectionControl1 = new PokerBot.BotGame.AISelectionControl();
       this.gameModes.SuspendLayout();
       this.botVHuman.SuspendLayout();
       this.nerualTraining.SuspendLayout();
@@ -107,12 +107,22 @@
       // showAllCards
       // 
       this.showAllCards.AutoSize = true;
+      this.showAllCards.Checked = true;
+      this.showAllCards.CheckState = System.Windows.Forms.CheckState.Checked;
       this.showAllCards.Location = new System.Drawing.Point(330, 16);
       this.showAllCards.Name = "showAllCards";
       this.showAllCards.Size = new System.Drawing.Size(97, 17);
       this.showAllCards.TabIndex = 53;
       this.showAllCards.Text = "Show All Cards";
       this.showAllCards.UseVisualStyleBackColor = true;
+      // 
+      // aiSelectionControl1
+      // 
+      this.aiSelectionControl1.AutoScroll = true;
+      this.aiSelectionControl1.Location = new System.Drawing.Point(9, 62);
+      this.aiSelectionControl1.Name = "aiSelectionControl1";
+      this.aiSelectionControl1.Size = new System.Drawing.Size(422, 218);
+      this.aiSelectionControl1.TabIndex = 52;
       // 
       // label16
       // 
@@ -193,6 +203,16 @@
       this.nerualTraining.TabIndex = 4;
       this.nerualTraining.Text = "Neural Training";
       this.nerualTraining.UseVisualStyleBackColor = true;
+      // 
+      // label1
+      // 
+      this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label1.Location = new System.Drawing.Point(3, 3);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(428, 31);
+      this.label1.TabIndex = 61;
+      this.label1.Text = "Training environment for recording training inputs and ideal actions. Not fully f" +
+    "unctional right now.";
       // 
       // allInAction
       // 
@@ -513,24 +533,6 @@
       this.gameName.Size = new System.Drawing.Size(125, 20);
       this.gameName.TabIndex = 21;
       this.gameName.Text = "Bot Game";
-      // 
-      // label1
-      // 
-      this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label1.Location = new System.Drawing.Point(3, 3);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(428, 31);
-      this.label1.TabIndex = 61;
-      this.label1.Text = "Training environment for recording training inputs and ideal actions. Not fully f" +
-    "unctional right now.";
-      // 
-      // aiSelectionControl1
-      // 
-      this.aiSelectionControl1.AutoScroll = true;
-      this.aiSelectionControl1.Location = new System.Drawing.Point(9, 62);
-      this.aiSelectionControl1.Name = "aiSelectionControl1";
-      this.aiSelectionControl1.Size = new System.Drawing.Size(422, 218);
-      this.aiSelectionControl1.TabIndex = 52;
       // 
       // BotGame
       // 

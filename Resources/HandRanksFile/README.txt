@@ -1,0 +1,1 @@
+HandRanks.dat from download should go in this folder.

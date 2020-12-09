@@ -1,0 +1,1 @@
+WPLookupTables (including location and index data) from download should go in this folder.
