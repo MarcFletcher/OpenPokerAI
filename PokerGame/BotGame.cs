@@ -1,24 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using PokerBot.Definitions;
 using PokerBot.Database;
-using System.IO;
-
-// We want to create 10 new players with random WR limits (between 0 and 5)
-// We play the game until the first player is sat out
-// We then record each players stack amount in some statistics field (maybe best to record win or lose amount from starting stack)
-// Then start again
-// After many many many iterations we should be able to plot
-//  Correlation between win amount and ratio between play and raise
-//  Correlation between win amount and play ratio
-//  Correlation between win amount and raise ratio
+using PokerBot.Definitions;
 
 namespace PokerBot.BotGame
 {
   public partial class BotGame : Form
   {
+    private static readonly string RESOURCES_PATH = "..\\..\\..\\Resources";
+
     databaseCacheClient clientCache;
     PokerGameBase pokerGame;
 
@@ -28,15 +21,15 @@ namespace PokerBot.BotGame
 
     public BotGame()
     {
-      //By default set the database offline
-      databaseQueries.SetDatabaseLocalMode(
-        Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Resources\\ManualPlayersTable.csv"));
+      // By default set the database offline
+      databaseQueries.SetDatabaseLocalMode(GetFullPathToResources("ManualPlayersTable.csv"));
 
-      Environment.SetEnvironmentVariable("PlayerNetworkStoreDir",
-        Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Resources\\PlayerNetworkStore"));
+      Environment.SetEnvironmentVariable("PlayerNetworkStoreDir", GetFullPathToResources("PlayerNetworkStore"));
 
-      Environment.SetEnvironmentVariable("HoleCardUsageDir", "D:\\PokerBot\\HoleCardUsageDat");
-      Environment.SetEnvironmentVariable("PlayerActionPredictionDir", "D:\\PokerBot\\LocalFBPStore\\PlayerActionPrediction");
+      Environment.SetEnvironmentVariable("HoleCardUsageDir", GetFullPathToResources("HoleCardUsageDat"));
+      Environment.SetEnvironmentVariable("PlayerActionPredictionDir", GetFullPathToResources("PlayerActionPrediction"));
+      Environment.SetEnvironmentVariable("WeightedWinRatioDir", GetFullPathToResources("WeightedWinRatioDat"));
+
       Environment.SetEnvironmentVariable("HandRanksFile", "D:\\PokerBot\\HandRanksFile\\HandRanks.dat");
 
       Environment.SetEnvironmentVariable("preflopWPFile", "D:\\PokerBot\\WPLookupTables\\preflopWP.dat");
@@ -51,10 +44,16 @@ namespace PokerBot.BotGame
       Environment.SetEnvironmentVariable("turnLocationsFile", "D:\\PokerBot\\WPLookupTables\\Locations\\turnLocations.dat");
       Environment.SetEnvironmentVariable("riverLocationsFile", "D:\\PokerBot\\WPLookupTables\\Locations\\riverLocations.dat");
 
-      Environment.SetEnvironmentVariable("WeightedWinRatioDir", "D:\\PokerBot\\WeightedWinRatioDat");
-
       InitializeComponent();
     }
+
+    /// <summary>
+    /// Get the absolute path to a file/folder that is in the resources folder.
+    /// </summary>
+    /// <param name="relativeResource">The relative path from within the resource directory.</param>
+    /// <returns>The absolute path to the resource.</returns>
+    private static string GetFullPathToResources(string relativeResource) =>
+      Path.Combine(Directory.GetCurrentDirectory(), RESOURCES_PATH, relativeResource);
 
     /// <summary>
     /// Closes any remaining game threads

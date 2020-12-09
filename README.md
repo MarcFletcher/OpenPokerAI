@@ -1,3 +1,6 @@
+# We're hiring! 
+If you're interested working on AI/ML problems like this as part of an amazing team please get in touch via our [careers page](https://careers.echobox.com/) :mortar_board:.
+
 # OpenPokerAI 
 
 [![Build Status](https://dev.azure.com/OpenPokerAI/OpenPokerAI/_apis/build/status/MarcFletcher.OpenPokerAI?branchName=main)](https://dev.azure.com/OpenPokerAI/OpenPokerAI/_build/latest?definitionId=1&branchName=main) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=OpenPokerAI_OpenPokerAI&metric=ncloc)](https://sonarcloud.io/dashboard?id=OpenPokerAI_OpenPokerAI)

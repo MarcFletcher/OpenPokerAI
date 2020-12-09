@@ -53,7 +53,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{6F2A208A-B980-466D-A143-A9604999CBA2}</Project>
-      <Name>DatabaseManagment</Name>
+      <Name>Database</Name>
     </ProjectReference>
     <ProjectReference Include="..\EncogFramework2.5\EncogFramework2.5.csproj">
       <Project>{8C22B855-C38D-4A24-A575-938C883CF6D0}</Project>

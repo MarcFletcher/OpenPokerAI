@@ -128,7 +128,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{6F2A208A-B980-466D-A143-A9604999CBA2}</Project>
-      <Name>DatabaseManagment</Name>
+      <Name>Database</Name>
     </ProjectReference>
     <ProjectReference Include="..\PokerDefinitions\PokerDefinitions.csproj">
       <Project>{6C640C23-0F8C-40B8-9A24-44CA5BACA5B0}</Project>
